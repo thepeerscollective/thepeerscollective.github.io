@@ -12,7 +12,7 @@ const d = {
   // hero
   bugging: ['this is bugging me.\nfix it?', 'to mnie wkurza.\npoprawisz?'],
   warsaw: ['someone in warsaw', 'ktoś z warszawy'],
-  love: ['love this', 'sztos'],
+  love: ['love this', 'okej, love this'],
   salon: ['a salon owner', 'właścicielka salonu'],
   competitor: ['your competitor 👀', 'twoja konkurencja 👀'],
   drag: ['↖ drag the c until it sits right', '↖ przesuń c na swoje miejsce'],
@@ -24,7 +24,7 @@ const d = {
   perfect22: ['✓ pixel perfect (2/2)', '✓ co do piksela (2/2)'],
   made_by: ['made by karina', 'projektuje i koduje karina'],
   scroll: ['scroll to zoom in ↓', 'przewiń, żeby przybliżyć ↓'],
-  satisfying: ['ok that was satisfying', 'o matko, jakie to satysfakcjonujące'],
+  satisfying: ['ok that was satisfying', 'okej, to było satisfying'],
   dot_tag: ['. · 14px off · baseline +16', '. · 14 px obok · linia bazowa +16'],
   wait_now: ['ok wait. now this.', 'czekaj. teraz to.'],
   skip: ['skip, i get it', 'pomiń, łapię'],
