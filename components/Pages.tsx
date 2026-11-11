@@ -11,6 +11,7 @@ import CaseStudy from './CaseStudy';
 import About from './About';
 import Offer from './Offer';
 import Contact from './Contact';
+import SiteBar from './SiteBar';
 
 function TabBar({ lang, on }: { lang: Lang; on: string }) {
   return (
@@ -28,10 +29,10 @@ export function HomePage({ lang }: { lang: Lang }) {
 }
 export function ProjectPage({ lang, slug }: { lang: Lang; slug: string }) {
   const p = bySlug(slug);
-  return (<><LangBoot lang={lang} /><main id="top"><ProjectView p={p} lang={lang} /><CaseStudy p={p} lang={lang} /></main><Footer lang={lang} /></>);
+  return (<><LangBoot lang={lang} /><SiteBar lang={lang} on="work" /><main id="top"><ProjectView p={p} lang={lang} /><CaseStudy p={p} lang={lang} /></main><Footer lang={lang} /></>);
 }
 export function AboutPage({ lang }: { lang: Lang }) {
-  return (<><LangBoot lang={lang} /><About lang={lang} /><Footer lang={lang} /><TabBar lang={lang} on="about" /></>);
+  return (<><LangBoot lang={lang} /><SiteBar lang={lang} on="about" /><About lang={lang} /><Footer lang={lang} /><TabBar lang={lang} on="about" /></>);
 }
 export function OfferPage({ lang }: { lang: Lang }) {
   return (<><LangBoot lang={lang} /><Offer lang={lang} /><Footer lang={lang} /><TabBar lang={lang} on="offer" /></>);

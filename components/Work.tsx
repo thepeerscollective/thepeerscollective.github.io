@@ -16,8 +16,8 @@ export default function Work({ lang }: { lang: Lang }) {
   if (p?.slug === 'grzywka') k.sel = '#a6d8f5';
 
   return (
-    <section id="work" className="work" aria-label={tr(lang, 'nav_work')}>
-      <div className="stage work-d desk-only" style={{ height: u(900), background: k.bg, color: k.ink }}>
+    <section id="work" className="work" aria-label={tr(lang, 'nav_work')} style={{ background: k.bg, transition: 'background .45s' }}>
+      <div className="stage fit work-d desk-only" style={{ height: u(900), background: k.bg, color: k.ink }}>
         <div className="ruler-top abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <LangSwitch lang={lang} color={k.ink === '#ffffff' ? '#fff' : hov === null ? undefined : k.ink} />
@@ -34,7 +34,8 @@ export default function Work({ lang }: { lang: Lang }) {
               </li>
             ))}
             <li style={{ color: k.ink }}><Link href={href(lang, '/about/')}>▸ {tr(lang, 'nav_about')}</Link><span style={{ color: k.dim }}>👁</span></li>
-            <li style={{ color: k.ink }}><Link href={href(lang, '/offer/')}>▸ {tr(lang, 'nav_export')}</Link><span style={{ color: k.dim }}>👁</span></li>
+            <li style={{ color: k.ink }}><Link href={href(lang, '/offer/')}>▸ {tr(lang, 'nav_offer')}</Link><span style={{ color: k.dim }}>👁</span></li>
+            <li style={{ color: k.ink }}><Link href={href(lang, '/contact/')}>▸ {tr(lang, 'nav_contact')}</Link><span style={{ color: k.dim }}>👁</span></li>
           </ul>
         </div>
 
@@ -71,7 +72,7 @@ export default function Work({ lang }: { lang: Lang }) {
 
         <Cursor x={1010} y={384} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
         <Cursor x={640} y={824} color="#ff4fa0" label={tr(lang, 'you')} />
-        <p className="abs hint" style={{ left: u(300), top: u(868), color: k.dim }}>{p ? p.hoverLine[lang] : tr(lang, 'work_hint')}</p>
+        <p className="abs hint" style={{ left: u(300), top: u(868), color: k.dim }}>{p ? p.hoverLine[lang] : ''}</p>
         <span className="abs zoom" style={{ left: u(1360), top: u(860), background: k.panel, color: k.ink }}>24%</span>
       </div>
 
@@ -99,7 +100,6 @@ function WorkMobile({ lang }: { lang: Lang }) {
           <img src={q.shot.replace('.webp', '-t.webp')} alt="" loading="lazy" style={{ outlineColor: q.c.ink }} />
         </Link>
       ))}
-      <p className="wm-hint" style={{ color: p.c.dim }}>{tr(lang, 'work_hint_m')}</p>
     </div>
   );
 }

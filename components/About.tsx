@@ -51,8 +51,6 @@ export default function About({ lang }: { lang: Lang }) {
       <div className="stage desk-only" style={{ height: u(1016) }}>
         <Rulers />
         <Grid12 faint />
-        <LangSwitch lang={lang} />
-        <Link className="abs pv-back" href={href(lang, '/')} style={{ color: '#fff4e2', right: u(140) }}>{tr(lang, 'canvas_back')}</Link>
         <div className="abs ab-photo" style={{ left: u(118), top: u(72), width: u(520), height: u(640) }}>
           <img src="/a/karina.webp" alt={L(lang, 'karina beers in times square, yellow top, red glasses', 'karina beers na times square, żółta bluzka, czerwone okulary')} />
         </div>
@@ -73,7 +71,6 @@ export default function About({ lang }: { lang: Lang }) {
       </div>
 
       <div className="ab-m mob-only">
-        <div className="pvm-top"><Link href={href(lang, '/')}>{tr(lang, 'canvas_back')}</Link><LangSwitch lang={lang} className="" /></div>
         <h1 className="serif">{tr(lang, 'hi')}</h1>
         <div className="ab-mphoto">
           <img src="/a/karina.webp" alt="karina beers" />

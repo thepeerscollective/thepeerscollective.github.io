@@ -6,6 +6,7 @@ import { tr, href } from '@/lib/i18n';
 import { u } from '@/lib/u';
 import { LangSwitch } from './bits';
 import BadSite from './BadSite';
+import { LoopCycle } from './Loop';
 
 const NOTE_BG: Record<string, string> = { 'heavy-cream': 'rgba(255,227,234,.82)', gnam: 'rgba(255,243,227,.85)', dakdak: 'rgba(11,10,9,.72)', grzywka: 'rgba(120,8,40,.55)' };
 const SWATCH_AT: Record<string, [number, number]> = { 'heavy-cream': [1160, 150], gnam: [1170, 320], dakdak: [1170, 716], grzywka: [1170, 34] };
@@ -49,12 +50,10 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
   return (
     <section className="pv" style={{ background: C.bg }}>
       {/* ---------- desktop ---------- */}
-      <div className="stage desk-only" style={{ height: u(900), background: C.bg }}>
+      <div className="stage fit desk-only" style={{ height: u(900), background: C.bg }}>
         <div className="ruler-top abs" style={{ backgroundColor: ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: ruler }} aria-hidden />
         <Link className="abs pv-crumb" href={href(lang, '/') + '#work'} style={{ color: C.bg === '#0b0a09' ? '#0b0a09' : C.bg }}>{tr(lang, 'crumbs')} {p.name}</Link>
-        <LangSwitch lang={lang} color={p.slug === 'dakdak' ? '#0b0a09' : '#fff5e3'} />
-        <Link className="abs pv-back" href={href(lang, '/') + '#work'} style={{ color: p.slug === 'dakdak' ? '#0b0a09' : '#fff5e3' }}>{tr(lang, 'canvas_back')}</Link>
         <div className="abs pv-img" style={{ left: u(24), top: u(24), width: u(1416), height: u(776) }}>
           <img src={p.shot} alt={`${p.name} — ${p.where[lang]}`} />
         </div>
@@ -101,21 +100,22 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
 
       {/* ---------- phone ---------- */}
       <div className="pv-m mob-only" style={{ background: C.bg, color: C.ink }}>
-        <div className="pvm-top"><Link href={href(lang, '/') + '#work'}>{tr(lang, 'canvas_back')}</Link><LangSwitch lang={lang} className="" /></div>
         <div className="pvm-img">
           {vs ? (
             <div className="pvm-bad"><BadSite slug={p.slug} lang={lang} /></div>
           ) : (
             <img src={p.phone} alt={`${p.name} — ${p.where[lang]}`} />
           )}
-          {inspect && !vs && (
-            <div className="pvm-insp">
-              {p.inspectNotes.slice(0, 3).map((n, i) => <p key={i} className="hand" style={{ color: p.slug === 'grzywka' ? '#fff' : '#ff3b30' }}>{n.text[lang]}</p>)}
-              <div className="pvm-sw">{p.swatches.map((s) => <i key={s.hex} style={{ background: s.hex }} title={s.hex} />)}</div>
-            </div>
-          )}
         </div>
         <div className="pvm-bar" style={{ ['--ink' as string]: C.ink }}>{Bar}</div>
+        {inspect && !vs && (
+          <div className="pvm-spec">
+            <p className="pvm-spec-h">{tr(lang, 'see_how')}</p>
+            <ol>{p.inspectNotes.map((n, i) => <li key={i}><b>{i + 1}</b><span className="hand">{n.text[lang].replace(/\n/g, ' ')}</span></li>)}</ol>
+            <div className="pvm-chips">{p.inspectChips.filter((c) => c.kind !== 'num').map((c, i) => <span key={i} className="chip">{c.text[lang]}</span>)}</div>
+            <div className="pvm-sw">{p.swatches.map((s) => <span key={s.hex}><i style={{ background: s.hex }} />{s.hex}</span>)}</div>
+          </div>
+        )}
         <button className="pvm-sheetbtn" style={{ background: C.window, color: p.slug === 'grzywka' ? '#de2a59' : C.ink, borderColor: p.slug === 'grzywka' ? '#de2a59' : C.ink }} onClick={() => setSheet(true)}>{tr(lang, 'steal')} ↑</button>
         {sheet && (
           <div className="pvm-sheet" role="dialog" aria-label={tr(lang, 'steal')} onClick={() => setSheet(false)}>
@@ -142,10 +142,7 @@ function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: 
       <div className="st-body">
         <h2 className="serif" style={{ color: title }}>{tr(lang, 'steal')}</h2>
         <p className="st-sub" style={{ color: C.body }}>{tr(lang, 'steal_sub')} {p.slug === 'grzywka' && lang === 'pl' ? 'grzywce' : p.name}.</p>
-        <div className="st-loop" style={{ background: C.soft }}>
-          {p.tricks.map((t, i) => <img key={i} src={t.img} alt="" style={{ animationDelay: `${i * 3}s` }} />)}
-          <span className="st-cap" style={{ color: C.body }}>{p.tricks.map((t) => t.title[lang]).join(' · ')}</span>
-        </div>
+        <div className="st-loop" style={{ background: C.soft }}><LoopCycle slug={p.slug} /></div>
         {p.tricks.map((t, i) => (
           <div key={i} className="st-row" style={{ borderTopColor: i ? hexa(title, 0.15) : 'transparent' }}>
             <span className="st-n">0{i + 1}</span>

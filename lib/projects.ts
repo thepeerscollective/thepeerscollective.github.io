@@ -107,7 +107,7 @@ export const projects: Project[] = [
     ],
     aa: { font: '', img: '/a/hc-type-aa.webp' },
     section2: t('02 · packaging & merch', '02 · opakowania i merch'),
-    s2: { big: '/a/box.webp', small: ['/a/tee.webp', '/a/tote.webp'], bigNote: t('the box is the billboard.\nevery delivery = an ad', 'pudełko to billboard.\nkażda dostawa = reklama'), smallNote: t('people wear the bakery home', 'ludzie noszą piekarnię do domu'), bigBg: '#ffd6e0' },
+    s2: { big: '/a/box.webp', small: ['/a/tee.webp', '/a/tote.webp', '/a/stickers.webp'], bigNote: t('the box is the billboard.\nevery delivery = an ad', 'pudełko to billboard.\nkażda dostawa = reklama'), smallNote: t('people wear the bakery home', 'ludzie noszą piekarnię do domu'), bigBg: '#ffd6e0' },
     next: { slug: 'gnam', label: t('next →  gnam, trattoria, kraków', 'dalej →  gnam, trattoria, kraków') },
   },
   {
@@ -192,17 +192,15 @@ export const projects: Project[] = [
       { x: 1000, y: 650, r: 2, text: t('the colour IS the sauce', 'kolor TO sos') },
     ],
     inspectNotes: [
-      { x: 720, y: 110, r: -2, text: t('dakdak in hangul, set\nlike a neon sign at 2am', 'dakdak po koreańsku,\njak neon o 2 w nocy') },
-      { x: 990, y: 622, r: 0, text: t('the order number ticks up\nlike the screen at the counter', 'numer zamówienia rośnie\njak ekran przy ladzie') },
-      { x: 740, y: 620, r: -2, text: t('pick a sauce: the whole\nsite turns that colour', 'wybierz sos: cała\nstrona zmienia kolor') },
+      { x: 110, y: 556, r: -2, text: t('dakdak in hangul, set\nlike a neon sign at 2am', 'dakdak po koreańsku,\njak neon o 2 w nocy') },
+      { x: 1000, y: 618, r: 0, text: t('the order number ticks up\nlike the screen at the counter', 'numer zamówienia rośnie\njak ekran przy ladzie') },
+      { x: 820, y: 690, r: -2, text: t('pick a sauce: the whole\nsite turns that colour', 'wybierz sos: cała\nstrona zmienia kolor') },
     ],
     inspectChips: [
-      { x: 110, y: 128, text: t('hangul · black han sans') },
-      { x: 1010, y: 124, text: t('counter · doto', 'licznik · doto') },
-      { x: 1000, y: 366, text: t('wordmark · krona one', 'logotyp · krona one') },
-      { x: 120, y: 640, text: t('labels · antonio', 'etykiety · antonio') },
-      { x: 30, y: 672, text: t('48'), kind: 'num' },
-      { x: 940, y: 110, text: t('32'), kind: 'num' },
+      { x: 112, y: 124, text: t('hangul · black han sans') },
+      { x: 1016, y: 152, text: t('counter · doto', 'licznik · doto') },
+      { x: 1000, y: 368, text: t('wordmark · krona one', 'logotyp · krona one') },
+      { x: 372, y: 656, text: t('labels · antonio', 'etykiety · antonio') },
     ],
     swatches: [
       { name: t('ink', 'czerń'), hex: '#0B0A09' },

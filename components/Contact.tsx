@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Lang } from '@/lib/projects';
 import { L, href } from '@/lib/i18n';
 import { Confetti, LangSwitch } from './bits';
+import SiteBar from './SiteBar';
 
 const ENDPOINT = 'https://formsubmit.co/ajax/hello@thepeerscollective.com';
 const ENDPOINT_FILE = 'https://formsubmit.co/hello@thepeerscollective.com';
@@ -159,7 +160,7 @@ export default function Contact({ lang }: { lang: Lang }) {
 
   return (
     <main className="contact page" id="top">
-      <div className="pg-top"><Link href={href(lang, '/')}>peerscollective</Link><LangSwitch lang={lang} className="" /></div>
+      <SiteBar lang={lang} on="contact" />
       <div className="ct-in">
         <form className="ct-form" onSubmit={(e) => { e.preventDefault(); send(); }}>
           <h1 className="serif ct-h">{L(lang, 'your place\nis next.', 'twoje miejsce\njest następne.')}</h1>
@@ -226,7 +227,7 @@ function Sent({ lang, no }: { lang: Lang; no: string }) {
   useEffect(() => { const t = setTimeout(() => setFixed(true), 500); return () => clearTimeout(t); }, []);
   return (
     <main className="sent page" id="top">
-      <div className="pg-top"><Link href={href(lang, '/')}>peerscollective</Link><LangSwitch lang={lang} className="" /></div>
+      <SiteBar lang={lang} on="contact" />
       <div className="sent-in">
         {fixed && <span className="toast sent-toast" role="status">{L(lang, '✓ pixel perfect. order sent.', '✓ co do piksela. zamówienie wysłane.')}</span>}
         <p className="serif sent-word" aria-hidden>peers<span className={'sent-c' + (fixed ? ' ok' : '')}>c</span>ollective</p>

@@ -12,13 +12,14 @@ import { projects, type Lang, type Project } from '@/lib/projects';
 import { tr, href } from '@/lib/i18n';
 import { u } from '@/lib/u';
 import LivePhone from './LivePhone';
+import Loop from './Loop';
 
 const ff = (spec: string): CSSProperties => {
   const [family, w] = spec.split(';');
   return w === 'italic' ? { fontFamily: family, fontStyle: 'italic', fontWeight: 400 } : { fontFamily: family, fontWeight: Number(w) };
 };
 const SMALL: Record<string, [number, number, number, number][]> = {
-  'heavy-cream': [[740, 1120, 200, 174], [950, 1104, 180, 242]],
+  'heavy-cream': [[736, 1110, 200, 174], [944, 1104, 180, 242], [1140, 1130, 200, 198]],
   gnam: [[744, 1124, 162, 220], [952, 1124, 176, 220], [1160, 1124, 176, 220]],
   dakdak: [[744, 1124, 190, 152], [952, 1124, 190, 152], [1160, 1124, 176, 152]],
   grzywka: [[744, 1124, 147, 220], [952, 1124, 147, 220], [1160, 1124, 176, 220]],
@@ -112,7 +113,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <div className="hand abs" style={{ left: u(120), top: u(2200), fontSize: u(26), transform: 'rotate(-2deg)' }}>{tr(lang, 'play_note')}</div>
         {p.tricks.map((t, i) => (
           <div key={i} className="abs cs-loop" style={{ left: u(520 + i * 290), top: u(1660), width: u(270), height: u(330), background: C.tile, borderColor: ink }}>
-            <div className="cs-loopimg" style={{ background: ink + '1f' }}><img src={t.img} alt="" loading="lazy" style={{ animationDelay: `${i * 0.8}s` }} /></div>
+            <div className="cs-loopimg" style={{ background: ink + '1f' }}><Loop slug={p.slug} i={i} /></div>
             <span className="cs-ln">0{i + 1}</span>
             <b style={{ color: ink }}>{t.title[lang]}</b>
             <span style={{ color: dim }}>{t.short[lang]}</span>
@@ -156,7 +157,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <hr style={{ borderColor: ink }} />
         {p.tricks.map((t, i) => (
           <div key={i} className="cs-mloop" style={{ background: C.tile, borderColor: ink }}>
-            <img src={t.img} alt="" loading="lazy" />
+            <div className="cs-mloopimg"><Loop slug={p.slug} i={i} /></div>
             <div><span className="cs-ln">0{i + 1}</span> <b style={{ color: ink }}>{t.title[lang]}</b><br /><span style={{ color: dim }}>{t.short[lang]}</span></div>
           </div>
         ))}

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { Lang } from '@/lib/projects';
 import { L, href, tr } from '@/lib/i18n';
 import { LangSwitch } from './bits';
+import SiteBar from './SiteBar';
 
 type R = { n: string; t: [string, string]; s: [string, string]; lines: [string, string][]; total: [string, string]; time: [string, string]; badge?: boolean };
 const RECEIPTS: R[] = [
@@ -73,7 +74,7 @@ export default function Offer({ lang }: { lang: Lang }) {
 
   return (
     <main className="offer page" id="top">
-      <div className="pg-top"><Link href={href(lang, '/')}>peerscollective</Link><LangSwitch lang={lang} className="" /></div>
+      <SiteBar lang={lang} on="offer" />
       <div className="pg-in">
         <h1 className="serif of-h">{L(lang, 'the menu.', 'menu.')}</h1>
         <p className="of-sub pre">{L(lang, 'three ways to work with us. prices start here, the exact quote comes after the brief.\nevery złoty we earn right now goes to my mom\'s home renovation.', 'trzy sposoby współpracy. ceny to punkt wyjścia, dokładna wycena przychodzi po briefie.\nkażda złotówka, którą teraz zarabiamy, idzie na remont domu mojej mamy.')}</p>
@@ -96,13 +97,12 @@ export default function Offer({ lang }: { lang: Lang }) {
             </Link>
           ))}
         </div>
-        <p className="hand of-note">{L(lang, 'tap a receipt = it goes into your order.', 'kliknij paragon = trafia do twojego zamówienia.')}</p>
 
         <h2 className="pg-sec">{L(lang, 'add-ons', 'dodatki')}</h2>
         <ul className="addons">{ADDONS.map((a, i) => <li key={i}><span>+ {lang === 'en' ? a[0] : a[1]}</span><span>{lang === 'en' ? a[2] : a[3]}</span></li>)}</ul>
 
         <h2 className="pg-sec">{L(lang, 'how it goes', 'jak to wygląda')}</h2>
-        <ol className="steps">{STEPS.map((s, i) => <li key={i}><span className={'st-c' + (i === 1 ? ' on' : '')}>0{i + 1}</span><b className="serif">{lang === 'en' ? s[0] : s[1]}</b><p>{lang === 'en' ? s[2] : s[3]}</p></li>)}</ol>
+        <ol className="steps">{STEPS.map((s, i) => <li key={i}><span className="st-c">0{i + 1}</span><b className="serif">{lang === 'en' ? s[0] : s[1]}</b><p>{lang === 'en' ? s[2] : s[3]}</p></li>)}</ol>
 
         <h2 className="pg-sec">{L(lang, 'questions', 'pytania')}</h2>
         <div className="faq">

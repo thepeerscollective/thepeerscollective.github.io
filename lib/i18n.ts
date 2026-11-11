@@ -7,7 +7,7 @@ const d = {
   nav_about: ['about', 'o mnie'],
   nav_offer: ['offer', 'oferta'],
   nav_contact: ['contact', 'kontakt'],
-  nav_export: ['export', 'eksport'],
+  nav_export: ['offer', 'oferta'],
   lang: ['EN / PL', 'PL / EN'],
   // hero
   bugging: ['this is bugging me.\nfix it?', 'to mnie wkurza.\npoprawisz?'],
@@ -22,7 +22,7 @@ const d = {
   perfect: ['✓ pixel perfect', '✓ co do piksela'],
   perfect12: ['✓ pixel perfect (1/2)', '✓ co do piksela (1/2)'],
   perfect22: ['✓ pixel perfect (2/2)', '✓ co do piksela (2/2)'],
-  made_by: ['made by karina · heavy cream · gnam · dakdak · grzywka', 'robi karina · heavy cream · gnam · dakdak · grzywka'],
+  made_by: ['made by karina', 'robi karina'],
   scroll: ['scroll to zoom in ↓', 'przewiń, żeby przybliżyć ↓'],
   satisfying: ['ok that was satisfying', 'ok, to było przyjemne'],
   dot_tag: ['. · 14px off · baseline +16', '. · 14 px obok · linia bazowa +16'],

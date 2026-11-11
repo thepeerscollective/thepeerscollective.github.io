@@ -50,23 +50,20 @@ export default function Hero({ lang }: { lang: Lang }) {
   const [phase, setPhase] = useState(0); // 0 broken · 1 c fixed · 2 dot round · 3 all done
   const [boom, setBoom] = useState(0);
   const onC = useCallback(() => { setPhase(1); setBoom((b) => b + 1); }, []);
-  const onDot = useCallback(() => { setPhase(3); setBoom((b) => b + 1); }, []);
   const c = useDrag(BROKEN, 12, onC, '--u');
   const cm = useDrag({ x: -8, y: 18 }, 10, onC, '--m');
-  const dot = useDrag({ x: 14, y: 16 }, 7, onDot, '--u');
 
-  useEffect(() => { if (phase === 1) { const t = setTimeout(() => setPhase(2), 1600); return () => clearTimeout(t); } }, [phase]);
   useEffect(() => { if (phase >= 1) { if (!c.done) c.finish(); if (!cm.done) cm.finish(); } }, [phase]); // eslint-disable-line
 
   const fixed = phase >= 1;
   const rotOf = (p: P, base: P) => ROT * Math.min(1, Math.hypot(p.x, p.y) / Math.hypot(base.x, base.y));
-  const toast = phase === 3 ? tr(lang, dot.done ? 'perfect22' : 'perfect') : phase >= 1 ? tr(lang, phase === 2 ? 'perfect12' : 'perfect') : '';
+  const toast = tr(lang, 'perfect');
 
   return (
     <section className="hero" aria-label="peerscollective">
       <h1 className="sr">peerscollective — {tr(lang, 'tagline')}</h1>
       {/* ---------- desktop ---------- */}
-      <div className="stage hero-d desk-only" style={{ height: u(900) }}>
+      <div className="stage fit hero-d desk-only" style={{ height: u(900) }}>
         <Rulers />
         <Grid12 rows={13} />
         <div className="abs guide-x" style={{ left: u(412), top: u(24), height: u(876) }} aria-hidden />
@@ -79,7 +76,7 @@ export default function Hero({ lang }: { lang: Lang }) {
         <div className="abs word" style={{ left: u(150), top: u(300) }} aria-hidden>peers</div>
         <div
           className={'abs word cdrag' + (c.done ? ' ok' : '') + (c.dragging ? ' drag' : '')}
-          style={{ left: u(580), top: u(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
+          style={{ left: u(598), top: u(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
           role="button" tabIndex={0}
           aria-label={lang === 'en' ? 'the c is crooked. drag it into place, or press enter to fix it' : 'c jest krzywe. przeciągnij je na miejsce albo naciśnij enter'}
           {...c.bind}
@@ -92,7 +89,7 @@ export default function Hero({ lang }: { lang: Lang }) {
             </span>
           )}
         </div>
-        <div className="abs word" style={{ left: u(fixed ? 666 : 670), top: u(300), transition: 'left .4s' }} aria-hidden>ollective</div>
+        <div className="abs word" style={{ left: u(fixed ? 686 : 690), top: u(300), transition: 'left .4s' }} aria-hidden>ollective</div>
 
         {!fixed && (
           <>
@@ -101,7 +98,7 @@ export default function Hero({ lang }: { lang: Lang }) {
               <path d="M66 78 C 50 50, 30 30, 6 6" fill="none" stroke="#ff3b30" strokeWidth="2.5" strokeLinecap="round" />
               <path d="M6 6 L 8 22 M6 6 L 21 9" fill="none" stroke="#ff3b30" strokeWidth="2.5" strokeLinecap="round" />
             </svg>
-            <Cursor x={671} y={559} color="#ff4fa0" label="karina" />
+            <Cursor x={505} y={600} color="#ff4fa0" label="karina" />
             <Cursor x={1080} y={600} color="#ffd84f" label={tr(lang, 'salon')} style={{ animation: 'drift 7s ease-in-out infinite alternate' }} />
             <Cursor x={1210} y={250} color="#fff4e2" label={tr(lang, 'competitor')} style={{ animation: 'drift 9s ease-in-out -3s infinite alternate' }} />
           </>
@@ -114,31 +111,15 @@ export default function Hero({ lang }: { lang: Lang }) {
             <Confetti on key={'c' + boom} />
             <p className="abs subline" style={{ left: 0, width: '100%', top: u(560) }}>
               {tr(lang, 'tagline')}
-              {phase >= 2 ? (
-                <span
-                  className={'dot' + (dot.done ? ' ok' : '')}
-                  style={{ transform: `translate(${u(dot.pos.x)}, ${u(dot.pos.y)})` }}
-                  role="button" tabIndex={0}
-                  aria-label={lang === 'en' ? 'the full stop is off too. drag it, or press enter' : 'kropka też jest obok. przeciągnij ją albo naciśnij enter'}
-                  {...dot.bind}
-                >.{!dot.done && phase === 2 && <b className="dtag" aria-hidden>{tr(lang, 'dot_tag')}</b>}</span>
-              ) : '.'}
+              .
             </p>
-            <p className="abs madeby" style={{ left: 0, width: '100%', top: u(618) }}>{tr(lang, 'made_by')}</p>
-            {phase === 2 && (
-              <>
-                <Cursor x={1122} y={628} color="#ff4fa0" label="karina" bubble={tr(lang, 'wait_now')} bubbleBg="#3a1a20" />
-                <button className="abs skip" style={{ right: u(48), top: u(836) }} onClick={() => setPhase(3)}>{tr(lang, 'skip')} →</button>
-              </>
-            )}
-            <a className="abs scrolldown" style={{ left: 0, width: '100%', top: u(820) }} href="#work">{tr(lang, 'scroll')}</a>
+            <p className="abs madeby" style={{ left: 0, width: '100%', top: u(622) }}>{tr(lang, 'made_by')}</p>
           </>
         )}
         {!fixed && (
           <>
             <p className="abs small dimtxt" style={{ left: u(48), top: u(840) }}>{tr(lang, 'drag')}</p>
             <p className="abs small dimtxt" style={{ left: u(1330), top: u(840) }}>{tr(lang, 'now')}</p>
-            <p className="abs gridlabel" style={{ left: u(104), top: u(870) }}>{tr(lang, 'grid')}</p>
           </>
         )}
       </div>
@@ -172,7 +153,6 @@ export default function Hero({ lang }: { lang: Lang }) {
             <Confetti on f={m} scaleX={0.27} key={'mc' + boom} />
             <p className="abs msub" style={{ left: 0, width: '100%', top: m(560) }}>{tr(lang, 'tagline')}.</p>
             <p className="abs mmade" style={{ left: m(30), width: m(330), top: m(620) }}>{tr(lang, 'made_by')}</p>
-            <a className="abs mscroll" style={{ left: 0, width: '100%', top: m(770) }} href="#work">{tr(lang, 'scroll')}</a>
           </>
         )}
       </div>
