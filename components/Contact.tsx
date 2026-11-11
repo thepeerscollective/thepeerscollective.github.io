@@ -166,8 +166,8 @@ export default function Contact({ lang }: { lang: Lang }) {
       <SiteBar lang={lang} on="contact" />
       <div className="ct-in">
         <form className="ct-form" onSubmit={(e) => { e.preventDefault(); send(); }}>
-          <h1 className="serif ct-h">{L(lang, 'your place\nis next.', 'twoje miejsce\njest następne.')}</h1>
-          <p className="ct-sub">{L(lang, 'order at the counter. under a minute. the brief happens over coffee.', 'zamów przy ladzie. mniej niż minuta. brief robimy przy kawie.')}</p>
+          <h1 className="serif ct-h">{L(lang, 'your place\nis next.', 'twój stolik\nczeka.')}</h1>
+          <p className="ct-sub">{L(lang, 'order at the counter. under a minute. the brief happens over coffee.', 'zamawiasz przy ladzie, zajmie ci to minutę. resztę obgadamy przy kawie.')}</p>
 
           <fieldset><legend>01 · {L(lang, 'who are you?', 'kim jesteś?')}</legend>
             <div className="chips">
@@ -186,7 +186,7 @@ export default function Contact({ lang }: { lang: Lang }) {
             </div>
           </fieldset>
           <fieldset><legend>05 · {L(lang, "let's talk", 'pogadajmy')}</legend>
-            <div className="chips"><Chips opts={TALK} sel={talk} onPick={setTalk} lang={lang} /><span className="ct-mailnote">{L(lang, 'email = no time slot, we reply in writing', 'mail = bez terminu, odpisujemy na piśmie')}</span></div>
+            <div className="chips"><Chips opts={TALK} sel={talk} onPick={setTalk} lang={lang} /><span className="ct-mailnote">{L(lang, 'email = no time slot, we reply in writing', 'mail = bez umawiania, po prostu odpiszemy')}</span></div>
             {!isMail && (
               <div className="chips" style={{ marginTop: 10 }}>
                 <Chips opts={slotOptsAll} sel={slot} onPick={setSlot} lang={lang} />
@@ -198,7 +198,7 @@ export default function Contact({ lang }: { lang: Lang }) {
             <input className="ct-reply" value={reply} onChange={(e) => setReply(e.target.value)} placeholder={L(lang, 'mail, phone or @instagram', 'mail, telefon albo @instagram')} required />
           </fieldset>
           <label className="ct-hp" aria-hidden="true">leave this empty<input tabIndex={-1} autoComplete="off" name="company_website_hp" value={honey} onChange={(e) => setHoney(e.target.value)} /></label>
-          <button className="ct-send" disabled={!canSend || state === 'sending'}>{state === 'sending' ? '…' : L(lang, 'place the order →', 'złóż zamówienie →')}</button>
+          <button className="ct-send" disabled={!canSend || state === 'sending'}>{state === 'sending' ? '…' : L(lang, 'place the order →', 'wysyłam zamówienie →')}</button>
           <p className="ct-priv">{L(lang, 'we only use this to reply to you. no newsletter, no cookies. ', 'używamy tego tylko, żeby ci odpisać. bez newslettera, bez ciasteczek. ')}<Link href={href(lang, '/privacy/')}>{L(lang, 'privacy →', 'prywatność →')}</Link></p>
           {state === 'error' && <p className="ct-err">{L(lang, "the printer jammed. ", 'drukarka się zacięła. ')}<a href={mailto}>{L(lang, 'send it by email instead →', 'wyślij mailem →')}</a></p>}
         </form>
@@ -234,12 +234,12 @@ function Sent({ lang, no }: { lang: Lang; no: string }) {
     <main className="sent page" id="top">
       <SiteBar lang={lang} on="contact" />
       <div className="sent-in">
-        {fixed && <span className="toast sent-toast" role="status">{L(lang, '✓ pixel perfect. order sent.', '✓ co do piksela. zamówienie wysłane.')}</span>}
+        {fixed && <span className="toast sent-toast" role="status">{L(lang, '✓ pixel perfect. order sent.', '✓ piksel w piksel. zamówienie poszło.')}</span>}
         <p className="serif sent-word" aria-hidden>peers<span className={'sent-c' + (fixed ? ' ok' : '')}>c</span>ollective</p>
         <div style={{ position: 'absolute', inset: 0, ['--u' as string]: 'calc(100vw / 1440)' }}><Confetti on={fixed} /></div>
         <p className="sent-sub">{L(lang, 'we reply within 24 h. usually faster.', 'odpisujemy w 24 h. zwykle szybciej.')}</p>
         <span className="sent-stub">nº {no} · {L(lang, 'sent', 'wysłane')}</span>
-        <Link className="sent-back" href={href(lang, '/') + '#work'}>{L(lang, 'back to the canvas', 'wróć na płótno')}</Link>
+        <Link className="sent-back" href={href(lang, '/') + '#work'}>{L(lang, 'back to the canvas', 'wróć do projektów')}</Link>
       </div>
     </main>
   );

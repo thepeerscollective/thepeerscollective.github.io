@@ -68,13 +68,13 @@ export const projects: Project[] = [
     c: { bg: '#ffe3ea', ink: '#a30f1a', dim: '#c46a78', panel: '#ffd6e0', soft: '#f3d9de', window: '#fff7ee', body: '#6b4a52', btnInk: '#ffe3ea', visitBg: '#a30f1a', visitInk: '#ffe3ea', caseBg: '#ffe3ea', tile: '#fff7ee', tileBig: '#ffd6e0', next: '#e5321b' },
     tricks: [
       { title: t('the croissant sleeps', 'croissant śpi'), desc: t('after 18:00 the hero croissant dozes off. the bakery is closed and the site knows it.', 'po 18:00 croissant zasypia. piekarnia jest zamknięta i strona o tym wie.'), short: t('after 18:00', 'po 18:00'), img: '/a/croissant.webp' },
-      { title: t('write on the cake', 'napisz na torcie'), desc: t('type a message, the piping bag follows your letters across the cake.', 'wpisz tekst, a rękaw cukierniczy pisze go na torcie.'), short: t('the piping bag follows', 'rękaw cukierniczy pisze za tobą'), img: '/a/box.webp' },
+      { title: t('write on the cake', 'napisz na torcie'), desc: t('type a message, the piping bag follows your letters across the cake.', 'wpisujesz życzenia, a rękaw cukierniczy pisze je na torcie.'), short: t('the piping bag follows', 'rękaw pisze za ciebie'), img: '/a/box.webp' },
       { title: t('out 4 min ago', 'z pieca 4 min temu'), desc: t('a live "fresh out of the oven" timer. the reason to come in now, not tomorrow.', 'licznik "prosto z pieca" na żywo. powód, żeby przyjść teraz, a nie jutro.'), short: t('the reason to come now', 'powód, żeby przyjść teraz'), img: '/a/cup.webp' },
     ],
     stealNote: t('opens 0.25s after the site,\noverlapping it a bit', 'otwiera się 0,25 s po stronie,\ntrochę na nią nachodząc'),
     stealNotePos: { x: 780, y: 680, r: -3 },
     vsNotes: [
-      { x: 1000, y: 620, r: -3, text: t('a croissant you want to bite', 'croissant, który chcesz ugryźć') },
+      { x: 1000, y: 620, r: -3, text: t('a croissant you want to bite', 'croissant, którego chce się ugryźć') },
       { x: 1150, y: 520, r: 2, text: t('a reason to come TODAY', 'powód, żeby przyjść DZIŚ') },
     ],
     inspectNotes: [
@@ -88,7 +88,7 @@ export const projects: Project[] = [
       { x: 150, y: 100, text: t('64'), kind: 'num' },
       { x: 546, y: 545, text: t('32'), kind: 'num' },
       { x: 300, y: 236, text: t('display · fraunces black', 'nagłówek · fraunces black') },
-      { x: 880, y: 196, text: t('script · yellowtail', 'pismo · yellowtail') },
+      { x: 880, y: 196, text: t('script · yellowtail', 'odręczny · yellowtail') },
       { x: 1240, y: 500, text: t('label · dm mono · caps', 'etykieta · dm mono · wersaliki') },
     ],
     swatches: [
@@ -100,14 +100,14 @@ export const projects: Project[] = [
     type: [
       { label: t('logo · cherry bomb one'), sample: '', font: '', size: 0, img: '/a/hc-type-logo.webp', imgW: 209 },
       { label: t('headlines · fraunces black · soft 100, wonk', 'nagłówki · fraunces black · soft 100, wonk'), sample: '', font: '', size: 0, img: '/a/hc-type-head.webp', imgW: 406 },
-      { label: t('script · yellowtail', 'pismo · yellowtail'), sample: '', font: '', size: 0, img: '/a/hc-type-script2.webp', imgW: 216 },
+      { label: t('script · yellowtail', 'odręczny · yellowtail'), sample: '', font: '', size: 0, img: '/a/hc-type-script2.webp', imgW: 216 },
       { label: t('merch · metal mania'), sample: '', font: '', size: 0, img: '/a/hc-type-merch.webp', imgW: 182 },
       { label: t('body · instrument sans', 'tekst · instrument sans'), sample: '', font: '', size: 0, img: '/a/hc-type-body.webp', imgW: 258 },
       { label: t('labels · dm mono', 'etykiety · dm mono'), sample: '', font: '', size: 0, img: '/a/hc-type-mono.webp', imgW: 235 },
     ],
     aa: { font: '', img: '/a/hc-type-aa.webp' },
     section2: t('02 · packaging & merch', '02 · opakowania i merch'),
-    s2: { big: '/a/box.webp', small: ['/a/tee.webp', '/a/tote.webp', '/a/stickers.webp'], bigNote: t('the box is the billboard.\nevery delivery = an ad', 'pudełko to billboard.\nkażda dostawa = reklama'), smallNote: t('people wear the bakery home', 'ludzie noszą piekarnię do domu'), bigBg: '#ffd6e0' },
+    s2: { big: '/a/box.webp', small: ['/a/tee.webp', '/a/tote.webp', '/a/stickers.webp'], bigNote: t('the box is the billboard.\nevery delivery = an ad', 'pudełko to billboard.\nkażda dostawa = reklama'), smallNote: t('people wear the bakery home', 'ludzie noszą piekarnię na sobie'), bigBg: '#ffd6e0' },
     next: { slug: 'gnam', label: t('next →  gnam, trattoria, kraków', 'dalej →  gnam, trattoria, kraków') },
   },
   {
@@ -126,19 +126,19 @@ export const projects: Project[] = [
     sameLine: t('same pasta. different website.', 'ten sam makaron. inna strona.'),
     c: { bg: '#fff3e3', ink: '#e5321b', dim: '#b0805e', panel: '#ffe9d0', soft: '#f6e2c8', window: '#fff3e3', body: '#6b4a3a', btnInk: '#fff3e3', visitBg: '#e5321b', visitInk: '#fff3e3', caseBg: '#fff3e3', tile: '#ffffff', tileBig: '#f6e2c8', next: '#f5b300' },
     tricks: [
-      { title: t('the tiramisu builds itself', 'tiramisu składa się samo'), desc: t('scroll and the layers stack: biscuit, mascarpone, cocoa.', 'przewijasz, a warstwy się układają: biszkopt, mascarpone, kakao.'), short: t('scroll, it stacks', 'przewijasz, rośnie'), img: '/a/gn-s3.webp' },
-      { title: t('take a number', 'weź numerek'), desc: t('pull a ticket like at the deli counter, then book your table.', 'wyciągnij numerek jak w delikatesach, potem zarezerwuj stolik.'), short: t('like at the deli counter', 'jak w delikatesach'), img: '/a/gn-s1.webp' },
-      { title: t('the nav is a ticket rail', 'menu to szyna na zamówienia'), desc: t('menu, prenota, la storia, dove: hung like comandas in the kitchen.', 'menu, prenota, la storia, dove: wiszą jak bloczki zamówień w kuchni.'), short: t('comandas in the kitchen', 'bloczki w kuchni'), img: '/a/gn-s2.webp' },
+      { title: t('the tiramisu builds itself', 'tiramisu układa się samo'), desc: t('scroll and the layers stack: biscuit, mascarpone, cocoa.', 'przewijasz, a warstwy się układają: biszkopt, mascarpone, kakao.'), short: t('scroll, it stacks', 'przewijasz i rośnie'), img: '/a/gn-s3.webp' },
+      { title: t('take a number', 'weź numerek'), desc: t('pull a ticket like at the deli counter, then book your table.', 'bierzesz numerek jak w mięsnym i rezerwujesz stolik.'), short: t('like at the deli counter', 'jak w mięsnym'), img: '/a/gn-s1.webp' },
+      { title: t('the nav is a ticket rail', 'menu wisi jak bloczki w kuchni'), desc: t('menu, prenota, la storia, dove: hung like comandas in the kitchen.', 'menu, prenota, la storia, dove: wiszą jak bloczki zamówień w kuchni.'), short: t('comandas in the kitchen', 'bloczki w kuchni'), img: '/a/gn-s2.webp' },
     ],
     stealNote: t('the bits people screenshot.\nthen: "make it mine"', 'rzeczy, które ludzie screenują.\npotem: "chcę taki"'),
     stealNotePos: { x: 640, y: 360, r: -3 },
     vsNotes: [
       { x: 770, y: 320, r: -3, text: t('the nav = order tickets\non a rail', 'menu = bloczki zamówień\nna szynie') },
-      { x: 760, y: 590, r: 2, text: t('you can almost smell this one', 'tę prawie czuć') },
+      { x: 760, y: 590, r: 2, text: t('you can almost smell this one', 'tu prawie czuć zapach') },
     ],
     inspectNotes: [
       { x: 60, y: 330, r: -2, text: t('menu, prenota, storia, dove:\nhung like comandas\nin the kitchen', 'menu, prenota, storia, dove:\nwiszą jak bloczki\nw kuchni') },
-      { x: 500, y: 380, r: 2, text: t('GNAM, huge.\nreadable from the tram', 'GNAM, wielkie.\nczytasz to z tramwaju') },
+      { x: 500, y: 380, r: 2, text: t('GNAM, huge.\nreadable from the tram', 'GNAM, ogromne.\nwidać z tramwaju') },
       { x: 820, y: 360, r: -2, text: t("the waiter's pen:\nthe red italic bits", 'długopis kelnera:\nczerwone kursywy') },
       { x: 1185, y: 400, r: 0, text: t("carta + pomodoro.\nthat's it.", 'carta + pomodoro.\ni tyle.') },
     ],
@@ -162,7 +162,7 @@ export const projects: Project[] = [
     ],
     aa: { font: "'Inter', sans-serif;900" },
     section2: t('02 · print & the room', '02 · druk i wnętrze'),
-    s2: { big: '/a/gn-big.webp', small: ['/a/gn-s1.webp', '/a/gn-s2.webp', '/a/gn-s3.webp'], bigNote: t('tables get a postcard,\nnot a flyer', 'na stołach pocztówka,\nnie ulotka'), smallNote: t('take a number,\nlike at the deli', 'weź numerek,\njak w delikatesach'), bigBg: '#f6e2c8' },
+    s2: { big: '/a/gn-big.webp', small: ['/a/gn-s1.webp', '/a/gn-s2.webp', '/a/gn-s3.webp'], bigNote: t('tables get a postcard,\nnot a flyer', 'na stołach pocztówka,\nnie ulotka'), smallNote: t('take a number,\nlike at the deli', 'weź numerek,\njak w mięsnym'), bigBg: '#f6e2c8' },
     next: { slug: 'dakdak', label: t('next →  dakdak, chicken & soju, paris', 'dalej →  dakdak, kurczak i soju, paryż') },
   },
   {
@@ -177,18 +177,18 @@ export const projects: Project[] = [
     scope: t('chicken & soju · paris\nbrand identity · packaging · photo booth · website', 'kurczak i soju · paryż\nidentyfikacja · opakowania · fotobudka · strona'),
     hoverLine: t('dakdak · chicken & soju, paris  →  click to open', 'dakdak · kurczak i soju, paryż  →  kliknij, żeby otworzyć'),
     hoverNote: t('2am neon. the whole os goes yellow', 'neon o 2 w nocy. wszystko robi się żółte'),
-    vsLabel: t('vs. a normal chicken place', 'vs. zwykła kurczakownia'),
+    vsLabel: t('vs. a normal chicken place', 'vs. zwykła knajpa z kurczakiem'),
     sameLine: t('same chicken. different website.', 'ten sam kurczak. inna strona.'),
     c: { bg: '#0b0a09', ink: '#f5b300', dim: '#8a847b', panel: '#15130f', soft: '#232019', window: '#141210', body: '#cfcbc4', btnInk: '#0b0a09', visitBg: '#f5b300', visitInk: '#0b0a09', caseBg: '#0b0a09', tile: '#15130f', tileBig: '#1e1b16', next: '#ffffff' },
     tricks: [
-      { title: t('pick a sauce', 'wybierz sos'), desc: t('soy garlic, yangnyeom, snow cheese: the whole site turns that colour.', 'sojowo-czosnkowy, yangnyeom, serowy: cała strona zmienia kolor.'), short: t('the site turns that colour', 'strona zmienia kolor'), img: '/a/dk-s3.webp' },
-      { title: t('live pick-up counter', 'licznik odbioru na żywo'), desc: t('the order number ticks up like the screen at the counter.', 'numer zamówienia rośnie jak na ekranie przy ladzie.'), short: t('ticks up like at the counter', 'rośnie jak przy ladzie'), img: '/a/dk-s2.webp' },
+      { title: t('pick a sauce', 'wybierz sos'), desc: t('soy garlic, yangnyeom, snow cheese: the whole site turns that colour.', 'wybierasz sos (sojowo-czosnkowy, yangnyeom, serowy), a cała strona zmienia kolor.'), short: t('the site turns that colour', 'strona zmienia kolor'), img: '/a/dk-s3.webp' },
+      { title: t('live pick-up counter', 'numerek do odbioru na żywo'), desc: t('the order number ticks up like the screen at the counter.', 'numer zamówienia rośnie jak na ekranie przy ladzie.'), short: t('ticks up like at the counter', 'rośnie jak przy ladzie'), img: '/a/dk-s2.webp' },
       { title: t('2am photo booth', 'fotobudka o 2 w nocy'), desc: t('strip photos from the booth, developing as you scroll.', 'paski zdjęć z fotobudki wywołują się, kiedy przewijasz.'), short: t('strips develop as you scroll', 'zdjęcia wywołują się przy przewijaniu'), img: '/a/dk-s1.webp' },
     ],
     stealNote: t('the bits people screenshot.\nthen: "make it mine"', 'rzeczy, które ludzie screenują.\npotem: "chcę taki"'),
     stealNotePos: { x: 720, y: 240, r: -3 },
     vsNotes: [
-      { x: 760, y: 120, r: -3, text: t('a live counter.\nfeels open right now', 'licznik na żywo.\nczujesz, że jest otwarte') },
+      { x: 760, y: 120, r: -3, text: t('a live counter.\nfeels open right now', 'licznik na żywo.\nod razu wiesz, że otwarte') },
       { x: 1000, y: 650, r: 2, text: t('the colour IS the sauce', 'kolor TO sos') },
     ],
     inspectNotes: [
@@ -229,15 +229,15 @@ export const projects: Project[] = [
     where: t('hair salon, warszawa', 'salon fryzjerski, warszawa'),
     meta: t('hair salon · warszawa · concept · creative direction, design, code', 'salon fryzjerski · warszawa · koncept · creative direction, design, kod'),
     scope: t('hair salon · warszawa\nbrand identity · the salon · lookbook · website', 'salon fryzjerski · warszawa\nidentyfikacja · salon · lookbook · strona'),
-    hoverLine: t('grzywka · the wolf is back  →  click to open', 'grzywka · wilczyca wraca  →  kliknij, żeby otworzyć'),
-    hoverNote: t('pink + baby blue gel. y2k teen mag energy', 'róż + błękitny żel. klimat gazetki dla nastolatek z 2003'),
+    hoverLine: t('grzywka · the wolf is back  →  click to open', 'grzywka · wolf cut wraca  →  kliknij, żeby otworzyć'),
+    hoverNote: t('pink + baby blue gel. y2k teen mag energy', 'róż + błękitny żel. klimat bravo girl z 2003'),
     vsLabel: t('vs. a normal salon', 'vs. zwykły salon'),
     sameLine: t('same haircut. different website.', 'ta sama fryzura. inna strona.'),
     c: { bg: '#de2a59', ink: '#ffffff', dim: '#ffc2d2', panel: '#c81f4c', soft: '#f6d3dd', window: '#ffffff', body: '#444444', btnInk: '#ffffff', visitBg: '#a6d8f5', visitInk: '#111111', caseBg: '#ffe6ee', tile: '#ffffff', tileBig: '#ffd0dc', next: '#fff4e2' },
     tricks: [
       { title: t('cut her fringe', 'obetnij jej grzywkę'), desc: t('drag the scissors across her bangs. oh no. then we fix it.', 'przeciągnij nożyczki po grzywce. o nie. potem to naprawiamy.'), short: t('oh no. then we fix it', 'o nie. potem naprawiamy'), img: '/a/gz-s1.webp' },
-      { title: t('the lookbook flips', 'lookbook się kartkuje'), desc: t('scroll and the 10 looks turn like magazine pages.', 'przewijasz, a 10 fryzur przewraca się jak strony gazety.'), short: t('10 looks, magazine pages', '10 fryzur, strony gazety'), img: '/a/gz-s2.webp' },
-      { title: t('10 new cuts!', '10 nowych cięć!'), desc: t('a burst sticker, a barcode, a flip phone: the whole y2k teen mag.', 'naklejka-wybuch, kod kreskowy, klapka: cała gazetka dla nastolatek z 2003.'), short: t('burst, barcode, flip phone', 'wybuch, kod kreskowy, klapka'), img: '/a/gz-s3.webp' },
+      { title: t('the lookbook flips', 'lookbook jak gazeta'), desc: t('scroll and the 10 looks turn like magazine pages.', 'przewijasz, a 10 fryzur przewraca się jak strony gazety.'), short: t('10 looks, magazine pages', '10 fryzur, strony gazety'), img: '/a/gz-s2.webp' },
+      { title: t('10 new cuts!', '10 nowych fryzur!'), desc: t('a burst sticker, a barcode, a flip phone: the whole y2k teen mag.', 'naklejka „nowość!”, kod kreskowy, telefon z klapką: czyste bravo girl z 2003.'), short: t('burst, barcode, flip phone', 'naklejka, kod kreskowy, klapka'), img: '/a/gz-s3.webp' },
     ],
     stealNote: t('the bits people screenshot.\nthen: "make it mine"', 'rzeczy, które ludzie screenują.\npotem: "chcę taki"'),
     stealNotePos: { x: 340, y: 590, r: -3, color: '#ffffff' },
@@ -248,7 +248,7 @@ export const projects: Project[] = [
     inspectNotes: [
       { x: 330, y: 172, r: -2, text: t('a magazine cover,\nnot a salon price list', 'okładka gazety,\nnie cennik salonu') },
       { x: 1120, y: 330, r: 2, text: t('cut her fringe.\nit grows back 1 cm a month', 'obetnij jej grzywkę.\nodrasta 1 cm miesięcznie') },
-      { x: 560, y: 420, r: -2, text: t('the burst = y2k teen mag', 'wybuch = gazetka z 2003') },
+      { x: 560, y: 420, r: -2, text: t('the burst = y2k teen mag', 'ta naklejka = bravo girl 2003') },
       { x: 1180, y: 100, r: 0, text: t('pink + baby blue gel.\nnothing beige.', 'róż + błękitny żel.\nzero beżu.') },
     ],
     inspectChips: [
@@ -271,8 +271,8 @@ export const projects: Project[] = [
     ],
     aa: { font: "'Unbounded', sans-serif;900" },
     section2: t('02 · the salon', '02 · salon'),
-    s2: { big: '/a/gz-big.webp', small: ['/a/gz-s1.webp', '/a/gz-s2.webp', '/a/gz-s3.webp'], bigNote: t('the shopfront looks\nlike the website', 'witryna wygląda\njak strona'), smallNote: t('the booking reminder\nis a flip phone', 'przypomnienie o wizycie\nto klapka'), bigBg: '#ffd0dc' },
-    next: { slug: '', label: t('next →  back to the canvas', 'dalej →  z powrotem na płótno') },
+    s2: { big: '/a/gz-big.webp', small: ['/a/gz-s1.webp', '/a/gz-s2.webp', '/a/gz-s3.webp'], bigNote: t('the shopfront looks\nlike the website', 'witryna wygląda\njak strona'), smallNote: t('the booking reminder\nis a flip phone', 'przypomnienie o wizycie\nprzychodzi na klapkę'), bigBg: '#ffd0dc' },
+    next: { slug: '', label: t('next →  back to the canvas', 'dalej →  wróć do wszystkich projektów') },
   },
 ];
 

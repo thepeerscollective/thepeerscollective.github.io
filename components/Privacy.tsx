@@ -29,7 +29,7 @@ const SECTIONS: S[] = [
     ],
   },
   {
-    h: ['who else touches it', 'kto jeszcze ma z tym styczność'],
+    h: ['who else touches it', 'kto jeszcze ma do nich dostęp'],
     b: [
       'formsubmit.co passes the form on to our inbox. zoho mail hosts the inbox (eu servers). github pages hosts the site and, like every server, keeps short technical logs (ip address, browser). we never sell or share your data for marketing.',
       'formsubmit.co przekazuje formularz do naszej skrzynki. zoho mail trzyma skrzynkę (serwery w ue). github pages hostuje stronę i jak każdy serwer zapisuje krótkie logi techniczne (adres ip, przeglądarka). nigdy nie sprzedajemy ani nie udostępniamy twoich danych do marketingu.',
@@ -82,7 +82,7 @@ export default function Privacy({ lang }: { lang: Lang }) {
               ))}
             </ul>
           </div>
-          <Link className="btn-pink pv-cta" href={href(lang, '/contact/')}>{lang === 'en' ? 'ok, place the order →' : 'ok, złóż zamówienie →'}</Link>
+          <Link className="btn-pink pv-cta" href={href(lang, '/contact/')}>{lang === 'en' ? 'ok, place the order →' : 'ok, zamawiam →'}</Link>
         </div>
       </main>
     </>

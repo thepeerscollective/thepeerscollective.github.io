@@ -50,30 +50,30 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
   return (
     <section className="pv" style={{ background: C.bg }}>
       {/* ---------- desktop ---------- */}
-      <div className="stage desk-only" style={{ height: u(900), background: C.bg }}>
+      <div className="stage pv-stage desk-only" style={{ background: C.bg }}>
         <div className="ruler-top abs" style={{ backgroundColor: ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: ruler }} aria-hidden />
         <Link className="abs pv-crumb" href={href(lang, '/') + '#work'} style={{ color: C.bg === '#0b0a09' ? '#0b0a09' : C.bg }}>{tr(lang, 'crumbs')} {p.name}</Link>
-        <div className="abs pv-img" style={{ left: u(24), top: u(24), width: u(1416), height: u(776) }}>
+        <div className="abs pv-img" style={{ left: u(24), top: u(24), width: u(1416), height: `calc(var(--u) * 776 - var(--crop))` }}>
           <img src={p.shot} alt={`${p.name} — ${p.where[lang]}`} />
         </div>
 
         {vs && (
-          <div className="abs pv-bad" style={{ left: u(24), top: u(24), width: u(706), height: u(776) }}>
+          <div className="abs pv-bad" style={{ left: u(24), top: u(24), width: u(706), height: `calc(var(--u) * 776 - var(--crop))` }}>
             <BadSite slug={p.slug} lang={lang} />
           </div>
         )}
         {vs && (
           <>
-            <div className="abs" style={{ left: u(731), top: u(24), width: u(3), height: u(776), background: C.ink, zIndex: 9 }} aria-hidden />
+            <div className="abs" style={{ left: u(731), top: u(24), width: u(3), height: `calc(var(--u) * 776 - var(--crop))`, background: C.ink, zIndex: 9 }} aria-hidden />
             <span className="abs pv-label" style={{ left: u(756), top: u(40), background: C.ink, color: C.btnInk }}>{p.name}</span>
             {p.vsNotes.map((n, i) => <div key={i} className="hand abs pv-note" style={{ left: u(n.x), top: u(n.y), fontSize: u(24), transform: `rotate(${n.r ?? 0}deg)`, zIndex: 9, color: p.slug === 'grzywka' ? '#fff' : undefined, background: nb }}>{n.text[lang]}</div>)}
           </>
         )}
 
         {inspect && (
-          <div className="abs pv-insp" style={{ left: 0, top: 0, width: '100%', height: u(800) }}>
-            <div className="abs" style={{ left: u(24), top: u(24), width: u(1416), height: u(776), background: 'rgba(23,5,7,.35)' }} />
+          <div className="abs pv-insp" style={{ left: 0, top: 0, width: '100%', height: `calc(var(--u) * 800 - var(--crop))` }}>
+            <div className="abs" style={{ left: u(24), top: u(24), width: u(1416), height: `calc(var(--u) * 776 - var(--crop))`, background: 'rgba(23,5,7,.35)' }} />
             {p.inspectChips.map((c, i) => (
               <span key={i} className={'abs chip' + (c.kind === 'num' ? ' num' : '')} style={{ left: u(c.x), top: u(c.y) }}>{c.text[lang]}</span>
             ))}
@@ -88,7 +88,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
           </div>
         )}
 
-        <div className="abs pv-bar" style={{ left: u(24), top: u(800), width: u(1416), height: u(100), background: inspect ? '#170507' : C.bg, borderTop: `1px solid ${inspect ? '#3a1a20' : C.ink}`, ['--ink' as string]: inspect ? '#fff4e2' : C.ink }}>
+        <div className="abs pv-bar" style={{ left: u(24), top: `calc(var(--u) * 800 - var(--crop))`, width: u(1416), height: u(100), background: inspect ? '#170507' : C.bg, borderTop: `1px solid ${inspect ? '#3a1a20' : C.ink}`, ['--ink' as string]: inspect ? '#fff4e2' : C.ink }}>
           {Bar}
         </div>
 
@@ -133,7 +133,7 @@ function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: 
   const tb = p.slug === 'heavy-cream' ? '#ffe3ea' : p.slug === 'dakdak' ? '#0b0a09' : '#ffffff';
   const title = p.slug === 'grzywka' ? '#de2a59' : C.ink;
   return (
-    <div className={mobile ? 'steal steal-m' : 'abs steal'} style={mobile ? { background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink } : { left: u(1010), top: u(60), width: u(400), height: u(700), background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink }} role={mobile ? undefined : 'dialog'} aria-label={tr(lang, 'steal')}>
+    <div className={mobile ? 'steal steal-m' : 'abs steal'} style={mobile ? { background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink } : { left: u(1010), top: u(60), width: u(400), height: `min(calc(var(--u) * 700), calc(var(--u) * 740 - var(--crop)))`, background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink }} role={mobile ? undefined : 'dialog'} aria-label={tr(lang, 'steal')}>
       <div className="st-bar" style={{ background: bar }}>
         <button className="st-dot" style={{ background: '#ff5f57' }} onClick={onClose} aria-label={tr(lang, 'close')} />
         <i style={{ background: '#febc2e' }} /><i style={{ background: '#28c840' }} />

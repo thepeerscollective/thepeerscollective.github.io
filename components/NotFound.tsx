@@ -12,7 +12,7 @@ const R: [string, string][] = [
   ['replies faster than your ex', 'odpisuje szybciej niż twój ex'],
   ['has never once said "make the logo bigger"', 'ani razu nie powiedziała „zróbmy większe logo”'],
   ['her figma file is cleaner than your apartment', 'jej plik w figmie jest czystszy niż twoje mieszkanie'],
-  ['can spot comic sans from three tables away', 'wyczuje comic sansa z trzech stolików dalej'],
+  ['can spot comic sans from three tables away', 'wypatrzy comic sansa z drugiego końca sali'],
   ['never used papyrus. not even ironically.', 'nigdy nie użyła papyrusa. nawet ironicznie.'],
   ['your competitor will get nervous', 'twoja konkurencja zacznie się denerwować'],
   ['your mom will finally get what you do', 'twoja mama w końcu zrozumie, czym się zajmujesz'],
@@ -49,7 +49,7 @@ export default function NotFound() {
         <p className="cn">{L("the page you were looking for isn't here. the font isn't either.", 'strony, której szukasz, tu nie ma. fontu też nie.')}</p>
         <div className="nf-btns">
           <button onClick={fix}>{L('replace with something better →', 'zamień na coś lepszego →')}</button>
-          <Link href={home + '#work'}>{L('back to the canvas', 'wróć na płótno')}</Link>
+          <Link href={home + '#work'}>{L('back to the canvas', 'wróć do projektów')}</Link>
         </div>
       </section>
     </main>

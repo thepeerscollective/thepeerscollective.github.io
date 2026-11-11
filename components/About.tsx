@@ -8,16 +8,16 @@ import Link from 'next/link';
 import { href } from '@/lib/i18n';
 
 const PINS = [
-  { px: 376, py: 331, ty: 110, en: 'frames: red. reading your kerning', pl: 'oprawki: czerwone. czytają twój kerning' },
+  { px: 376, py: 331, ty: 110, en: 'frames: red. reading your kerning', pl: 'okulary: czerwone. widzą twój kerning' },
   { px: 602, py: 353, ty: 250, en: "times square? i'd pick your café", pl: 'times square? wolę twoją kawiarnię' },
-  { px: 432, py: 487, ty: 390, en: 'nails: done. your website next', pl: 'paznokcie: zrobione. strona następna' },
-  { px: 312, py: 526, ty: 530, en: 'rings: 6. opinions: more', pl: 'pierścionki: 6. opinii: więcej' },
-  { px: 357, py: 599, ty: 670, en: 'necklace: colour palette, approved', pl: 'naszyjnik: paleta kolorów, zatwierdzona' },
+  { px: 432, py: 487, ty: 390, en: 'nails: done. your website next', pl: 'paznokcie: zrobione. teraz twoja strona' },
+  { px: 312, py: 526, ty: 530, en: 'rings: 6. opinions: more', pl: 'pierścionków: 6. opinii: więcej' },
+  { px: 357, py: 599, ty: 670, en: 'necklace: colour palette, approved', pl: 'naszyjnik: paleta zatwierdzona' },
 ];
 
 const BIO = {
   en: "web designer and creative director. i design websites, brands and photo shoots for small places with character.\n\ni've been designing websites for a few years and coding them for a shorter while. it started with designing for myself and ended with me not being able to walk into a café without judging its menu.\n\npretty isn't enough. there are a million pretty websites, and the one you remember is the one that did something weird.\n\npeerscollective is me + people i trust: a photographer and others, picked for each project.",
-  pl: 'web designerka i creative directorka. projektuję strony, marki i sesje zdjęciowe dla małych miejsc z charakterem.\n\nstrony projektuję od kilku lat, koduję od niedawna. zaczęło się od projektowania dla siebie, a skończyło na tym, że już nie umiem wejść do kawiarni i nie ocenić jej menu.\n\nładne to za mało. ładnych stron jest milion, a zapamiętujesz tę, która zrobiła coś dziwnego.\n\npeerscollective to ja + ludzie, którym ufam: fotograf i inni, dobierani pod projekt.',
+  pl: 'web designerka i creative directorka. projektuję strony, marki i sesje zdjęciowe dla małych miejsc z charakterem.\n\nstrony projektuję od kilku lat, koduję od niedawna. zaczęło się od projektowania dla siebie, a skończyło na tym, że nie umiem już wejść do kawiarni i nie ocenić jej menu.\n\nładne to za mało. ładnych stron jest milion, a pamięta się tę, która zrobiła coś innego.\n\npeerscollective to ja + ludzie, którym ufam: fotograf i inni, dobierani pod projekt.',
 };
 
 export default function About({ lang }: { lang: Lang }) {
