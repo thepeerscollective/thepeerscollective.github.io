@@ -24,7 +24,7 @@ export default function Footer({ lang }: { lang: Lang }) {
         </div>
       </div>
       <div className="ft-bot">
-        <span>{tr(lang, 'made_remote')}</span>
+        <span>{tr(lang, 'made_remote')} · <Link href={href(lang, '/privacy/')}>{lang === 'en' ? 'privacy (no cookies)' : 'prywatność (bez ciasteczek)'}</Link></span>
         <a href="#top">{tr(lang, 'top')}</a>
       </div>
     </footer>

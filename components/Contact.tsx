@@ -75,6 +75,7 @@ export default function Contact({ lang }: { lang: Lang }) {
   const [slot, setSlot] = useState<string[]>([]);
   const [otherTime, setOtherTime] = useState('');
   const [reply, setReply] = useState('');
+  const [honey, setHoney] = useState('');
   const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
   const [rec, setRec] = useState<'off' | 'rec' | 'done'>('off');
   const [secs, setSecs] = useState(0);
@@ -123,6 +124,7 @@ export default function Contact({ lang }: { lang: Lang }) {
 
   const send = async () => {
     if (!canSend || state === 'sending') return;
+    if (honey) { setState('sent'); return; } // a bot filled the hidden field: pretend, send nothing
     setState('sending');
     const data: Record<string, string> = {
       _subject: `nowe zamówienie nº ${no} · ${whoTxt || '?'}`,
@@ -195,7 +197,9 @@ export default function Contact({ lang }: { lang: Lang }) {
           <fieldset><legend>06 · {L(lang, 'where do we reply?', 'gdzie odpisać?')}</legend>
             <input className="ct-reply" value={reply} onChange={(e) => setReply(e.target.value)} placeholder={L(lang, 'mail, phone or @instagram', 'mail, telefon albo @instagram')} required />
           </fieldset>
+          <label className="ct-hp" aria-hidden="true">leave this empty<input tabIndex={-1} autoComplete="off" name="company_website_hp" value={honey} onChange={(e) => setHoney(e.target.value)} /></label>
           <button className="ct-send" disabled={!canSend || state === 'sending'}>{state === 'sending' ? '…' : L(lang, 'place the order →', 'złóż zamówienie →')}</button>
+          <p className="ct-priv">{L(lang, 'we only use this to reply to you. no newsletter, no cookies. ', 'używamy tego tylko, żeby ci odpisać. bez newslettera, bez ciasteczek. ')}<Link href={href(lang, '/privacy/')}>{L(lang, 'privacy →', 'prywatność →')}</Link></p>
           {state === 'error' && <p className="ct-err">{L(lang, "the printer jammed. ", 'drukarka się zacięła. ')}<a href={mailto}>{L(lang, 'send it by email instead →', 'wyślij mailem →')}</a></p>}
         </form>
 

@@ -604,3 +604,17 @@ a { color: inherit; text-decoration: none; }
 
 .hero-d { --crop: max(0px, calc(var(--u) * 900 - 100svh)); height: min(calc(var(--u) * 900), 100svh); min-height: calc(var(--u) * 640); }
 .kern-s { margin-left: -0.075em; }
+
+/* ---------- privacy + form bits ---------- */
+.ct-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.ct-priv { font-size: 10px; color: var(--dim); margin: 12px 0 0 4px; }
+.ct-priv a, .ft-bot span a { text-decoration: underline; text-underline-offset: 3px; }
+.ft-bot span a:hover, .ct-priv a:hover { color: var(--pink); }
+.pv-in { max-width: 900px; }
+.pv-promise { font-size: 30px; margin: 26px 0 40px; transform: rotate(-2deg); display: inline-block; }
+.pv-fig { font-size: 13px; }
+.pv-fig.fig li button { height: 44px; font-size: 14px; }
+.pv-fig .fig-car { width: 22px; }
+.pv-txt { margin: -2px 0 14px 22px; font: 400 12px/1.75 var(--mono); color: var(--dim); max-width: 700px; }
+.pv-cta { margin-top: 40px; }
+@media (max-width: 760px) { .pv-promise { font-size: 24px; } .pv-fig.fig li button { height: auto; min-height: 40px; text-align: left; } }
