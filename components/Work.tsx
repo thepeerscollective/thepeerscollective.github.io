@@ -17,7 +17,7 @@ export default function Work({ lang }: { lang: Lang }) {
 
   return (
     <section id="work" className="work" aria-label={tr(lang, 'nav_work')} style={{ background: k.bg, transition: 'background .45s' }}>
-      <div className="stage fit work-d desk-only" style={{ height: u(900), background: k.bg, color: k.ink }}>
+      <div className="stage work-d desk-only" style={{ height: u(900), background: k.bg, color: k.ink }}>
         <div className="ruler-top abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <LangSwitch lang={lang} color={k.ink === '#ffffff' ? '#fff' : hov === null ? undefined : k.ink} />

@@ -46,6 +46,9 @@ function useDrag(start: P, snap: number, onSnap: () => void, scaleVar: '--u' | '
   return { pos, done, dragging, finish, bind: { onPointerDown: onDown, onPointerMove: onMove, onPointerUp: onUp, onPointerCancel: onUp, onKeyDown: onKey } };
 }
 
+/** hero is cropped to one screen: top stays, middle moves up half the crop, bottom moves up the whole crop */
+const vy = (y: number) => (y < 150 ? u(y) : y > 780 ? `calc(var(--u) * ${y} - var(--crop))` : `calc(var(--u) * ${y} - var(--crop) / 2)`);
+
 export default function Hero({ lang }: { lang: Lang }) {
   const [phase, setPhase] = useState(0); // 0 broken · 1 c fixed · 2 dot round · 3 all done
   const [boom, setBoom] = useState(0);
@@ -63,20 +66,20 @@ export default function Hero({ lang }: { lang: Lang }) {
     <section className="hero" aria-label="peerscollective">
       <h1 className="sr">peerscollective — {tr(lang, 'tagline')}</h1>
       {/* ---------- desktop ---------- */}
-      <div className="stage fit hero-d desk-only" style={{ height: u(900) }}>
+      <div className="stage hero-d desk-only">
         <Rulers />
         <Grid12 rows={13} />
-        <div className="abs guide-x" style={{ left: u(412), top: u(24), height: u(876) }} aria-hidden />
-        <div className="abs guide-y" style={{ left: u(24), top: u(188), width: u(1416) }} aria-hidden />
+        <div className="abs guide-x" style={{ left: u(412), top: vy(24), height: u(876) }} aria-hidden />
+        <div className="abs guide-y" style={{ left: u(24), top: vy(188), width: u(1416) }} aria-hidden />
         <div className="abs pinkmark" style={{ left: u(411), top: 0, width: u(2), height: u(24) }} aria-hidden />
-        <div className="abs pinkmark" style={{ left: 0, top: u(187), width: u(24), height: u(2) }} aria-hidden />
-        <div className="abs coord" style={{ left: u(420), top: u(196) }} aria-hidden>x 412 · y 188</div>
+        <div className="abs pinkmark" style={{ left: 0, top: vy(187), width: u(24), height: u(2) }} aria-hidden />
+        <div className="abs coord" style={{ left: u(420), top: vy(196) }} aria-hidden>x 412 · y 188</div>
         <TopNav lang={lang} />
 
-        <div className="abs word" style={{ left: u(150), top: u(300) }} aria-hidden>peers</div>
+        <div className="abs word" style={{ left: u(150), top: vy(300) }} aria-hidden>peers</div>
         <div
           className={'abs word cdrag' + (c.done ? ' ok' : '') + (c.dragging ? ' drag' : '')}
-          style={{ left: u(598), top: u(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
+          style={{ left: u(598), top: vy(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
           role="button" tabIndex={0}
           aria-label={lang === 'en' ? 'the c is crooked. drag it into place, or press enter to fix it' : 'c jest krzywe. przeciągnij je na miejsce albo naciśnij enter'}
           {...c.bind}
@@ -89,37 +92,37 @@ export default function Hero({ lang }: { lang: Lang }) {
             </span>
           )}
         </div>
-        <div className="abs word" style={{ left: u(fixed ? 686 : 690), top: u(300), transition: 'left .4s' }} aria-hidden>ollective</div>
+        <div className="abs word" style={{ left: u(fixed ? 686 : 690), top: vy(300), transition: 'left .4s' }} aria-hidden>ollective</div>
 
         {!fixed && (
           <>
-            <div className="hand abs bug" style={{ left: u(733), top: u(635), fontSize: u(40), transform: 'rotate(-4deg)' }}>{tr(lang, 'bugging')}</div>
-            <svg className="abs" style={{ left: u(676), top: u(554), width: u(72), height: u(82), overflow: 'visible' }} viewBox="0 0 72 82" aria-hidden>
+            <div className="hand abs bug" style={{ left: u(733), top: vy(635), fontSize: u(40), transform: 'rotate(-4deg)' }}>{tr(lang, 'bugging')}</div>
+            <svg className="abs" style={{ left: u(676), top: vy(554), width: u(72), height: u(82), overflow: 'visible' }} viewBox="0 0 72 82" aria-hidden>
               <path d="M66 78 C 50 50, 30 30, 6 6" fill="none" stroke="#ff3b30" strokeWidth="2.5" strokeLinecap="round" />
               <path d="M6 6 L 8 22 M6 6 L 21 9" fill="none" stroke="#ff3b30" strokeWidth="2.5" strokeLinecap="round" />
             </svg>
-            <Cursor x={505} y={600} color="#ff4fa0" label="karina" />
-            <Cursor x={1080} y={600} color="#ffd84f" label={tr(lang, 'salon')} style={{ animation: 'drift 7s ease-in-out infinite alternate' }} />
-            <Cursor x={1210} y={250} color="#fff4e2" label={tr(lang, 'competitor')} style={{ animation: 'drift 9s ease-in-out -3s infinite alternate' }} />
+            <Cursor fy={vy} x={505} y={600} color="#ff4fa0" label="karina" />
+            <Cursor fy={vy} x={1080} y={600} color="#ffd84f" label={tr(lang, 'salon')} style={{ animation: 'drift 7s ease-in-out infinite alternate' }} />
+            <Cursor fy={vy} x={1210} y={250} color="#fff4e2" label={tr(lang, 'competitor')} style={{ animation: 'drift 9s ease-in-out -3s infinite alternate' }} />
           </>
         )}
-        <Cursor x={fixed ? 311 : 240} y={fixed ? 717 : 640} color="#7cc4ff" label={tr(lang, 'warsaw')} bubble={fixed ? tr(lang, 'satisfying') : tr(lang, 'love')} style={{ transition: 'left 1.2s, top 1.2s' }} />
+        <Cursor fy={vy} x={fixed ? 311 : 240} y={fixed ? 717 : 640} color="#7cc4ff" label={tr(lang, 'warsaw')} bubble={fixed ? tr(lang, 'satisfying') : tr(lang, 'love')} style={{ transition: 'left 1.2s, top 1.2s' }} />
 
         {fixed && (
           <>
-            <div key={boom} className="abs toast" style={{ left: '50%', top: u(232), transform: 'translateX(-50%)' }} role="status">{toast}</div>
+            <div key={boom} className="abs toast" style={{ left: '50%', top: vy(232), transform: 'translateX(-50%)' }} role="status">{toast}</div>
             <Confetti on key={'c' + boom} />
-            <p className="abs subline" style={{ left: 0, width: '100%', top: u(560) }}>
+            <p className="abs subline" style={{ left: 0, width: '100%', top: vy(560) }}>
               {tr(lang, 'tagline')}
               .
             </p>
-            <p className="abs madeby" style={{ left: 0, width: '100%', top: u(622) }}>{tr(lang, 'made_by')}</p>
+            <p className="abs madeby" style={{ left: 0, width: '100%', top: vy(622) }}>{tr(lang, 'made_by')}</p>
           </>
         )}
         {!fixed && (
           <>
-            <p className="abs small dimtxt" style={{ left: u(48), top: u(840) }}>{tr(lang, 'drag')}</p>
-            <p className="abs small dimtxt" style={{ left: u(1330), top: u(840) }}>{tr(lang, 'now')}</p>
+            <p className="abs small dimtxt" style={{ left: u(48), top: vy(840) }}>{tr(lang, 'drag')}</p>
+            <p className="abs small dimtxt" style={{ left: u(1330), top: vy(840) }}>{tr(lang, 'now')}</p>
           </>
         )}
       </div>

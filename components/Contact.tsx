@@ -82,7 +82,8 @@ export default function Contact({ lang }: { lang: Lang }) {
   const mr = useRef<MediaRecorder | null>(null);
   const [audioUrl, setAudioUrl] = useState('');
   const [slots, setSlots] = useState<Date[]>([]);
-  const [no] = useState(() => String(412 + Math.floor(Math.random() * 80)).padStart(4, '0'));
+  const [no, setNo] = useState('0412');
+  useEffect(() => { setNo(String(412 + Math.floor(Math.random() * 80)).padStart(4, '0')); }, []);
 
   useEffect(() => {
     setSlots(nextSlots());

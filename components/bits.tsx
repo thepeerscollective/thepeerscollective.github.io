@@ -5,9 +5,9 @@ import { useEffect, type CSSProperties, type ReactNode } from 'react';
 import type { Lang } from '@/lib/projects';
 import { u } from '@/lib/u';
 
-export function Cursor({ x, y, color, label, bubble, f = u, style, bubbleBg }: { x: number; y: number; color: string; label: string; bubble?: string; f?: (n: number) => string; style?: CSSProperties; bubbleBg?: string }) {
+export function Cursor({ x, y, color, label, bubble, f = u, fy, style, bubbleBg }: { x: number; y: number; color: string; label: string; bubble?: string; f?: (n: number) => string; fy?: (n: number) => string; style?: CSSProperties; bubbleBg?: string }) {
   return (
-    <div className="cur abs" style={{ left: f(x), top: f(y), ...style }} aria-hidden>
+    <div className="cur abs" style={{ left: f(x), top: (fy ?? f)(y), ...style }} aria-hidden>
       <svg viewBox="0 0 14 21">
         <path d="M1 1 L1 17 L5 13 L8 20 L11 19 L8 12 L13 12 Z" fill={color} stroke="#170507" strokeWidth="1.2" strokeLinejoin="round" />
       </svg>

@@ -50,7 +50,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
   return (
     <section className="pv" style={{ background: C.bg }}>
       {/* ---------- desktop ---------- */}
-      <div className="stage fit desk-only" style={{ height: u(900), background: C.bg }}>
+      <div className="stage desk-only" style={{ height: u(900), background: C.bg }}>
         <div className="ruler-top abs" style={{ backgroundColor: ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: ruler }} aria-hidden />
         <Link className="abs pv-crumb" href={href(lang, '/') + '#work'} style={{ color: C.bg === '#0b0a09' ? '#0b0a09' : C.bg }}>{tr(lang, 'crumbs')} {p.name}</Link>

@@ -37,7 +37,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
   const rows = hcType ? [] : p.type;
   const rowGap = rows.length === 4 ? 48 : 60;
   const rowY0 = rows.length === 4 ? 788 : 798;
-  const sampleX = p.slug === 'gnam' ? 560 : p.slug === 'dakdak' ? 600 : 640;
+  const sampleX = p.slug === 'gnam' ? 620 : p.slug === 'dakdak' ? 600 : 640;
   const labelX = p.slug === 'grzywka' ? 400 : 380;
   const nextHref = p.next.slug ? href(lang, `/work/${p.next.slug}/`) : href(lang, '/') + '#work';
 
