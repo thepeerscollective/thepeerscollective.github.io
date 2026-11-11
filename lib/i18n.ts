@@ -2,7 +2,7 @@ import type { Lang } from './projects';
 
 const d = {
   tagline: ['web design & creative direction', 'projektowanie stron i creative direction'],
-  topline: ['karina · peerscollective — web design & creative direction', 'karina · peerscollective — strony, marki i creative direction'],
+  topline: ['karina · peerscollective · web design & creative direction', 'karina · peerscollective · strony, marki i creative direction'],
   nav_work: ['work', 'projekty'],
   nav_about: ['about', 'o mnie'],
   nav_offer: ['offer', 'oferta'],

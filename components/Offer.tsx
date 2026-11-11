@@ -11,17 +11,17 @@ const RECEIPTS: R[] = [
   {
     n: '01', t: ['the starter', 'przystawka'], s: ['design + code, made for you', 'projekt + kod, szyte na miarę'],
     lines: [['design in figma first. you approve', 'najpierw projekt w figmie do akceptacji'], ['interactions + details made for you', 'animacje i detale szyte na miarę'], ['up to 5 pages, mobile, EN + PL', 'do 5 podstron, wersja na telefon, PL + EN'], ['a panel: edit menu, prices, photos', 'panel: sama zmieniasz menu, ceny, foto'], ['google basics + business profile', 'podstawy seo + wizytówka w google'], ['help with domain + hosting', 'pomoc z domeną i hostingiem'], ['30 days of fixes + 30 min training', '30 dni poprawek + 30 min szkolenia']],
-    total: ['from 2 500 zł', 'od 2 500 zł'], time: ['2–4 weeks', '2–4 tyg.'],
+    total: ['from 2 500 zł', 'od 2 500 zł'], time: ['2-4 weeks', '2-4 tyg.'],
   },
   {
     n: '02', t: ['the main course', 'danie główne'], s: ['brand + website', 'marka + strona'], badge: true,
     lines: [['everything in 01', 'wszystko z 01'], ['logo, colours, type, mini brand book', 'logo, kolory, fonty, mini księga marki'], ['print: menu + QR menu, cards, stickers', 'druk: menu + QR, wizytówki, naklejki'], ['packaging: box, cup, bag', 'opakowania: pudełko, kubek, torba'], ['social files: avatar, covers', 'grafiki na social: avatar, okładki']],
-    total: ['from 5 000 zł', 'od 5 000 zł'], time: ['3–6 weeks', '3–6 tyg.'],
+    total: ['from 5 000 zł', 'od 5 000 zł'], time: ['3-6 weeks', '3-6 tyg.'],
   },
   {
     n: '03', t: ['the tasting menu', 'menu degustacyjne'], s: ['brand + website + feed', 'marka + strona + feed'],
     lines: [['everything in 02', 'wszystko z 02'], ['photo shoot art direction', 'art direction sesji zdjęciowej'], ['first 9 posts + post/story templates', '9 pierwszych postów + szablony'], ['2 animations for launch', '2 animacje na start'], ['launch texts + launch plan', 'teksty i plan na start']],
-    total: ['from 7 500 zł', 'od 7 500 zł'], time: ['6–8 weeks', '6–8 tyg.'],
+    total: ['from 7 500 zł', 'od 7 500 zł'], time: ['6-8 weeks', '6-8 tyg.'],
   },
 ];
 const ADDONS: [string, string, string, string][] = [
@@ -55,7 +55,7 @@ const FAQ: [string, string, string, string][] = [
   ['who can pay what they can?', 'dla kogo jest „płać, ile możesz”?', "anyone who can't afford the full price. pay what you can, even 200 zł helps. you get a simpler site, made in between bigger projects, so it takes a bit longer.", 'każdy, kogo nie stać na pełną cenę. płacisz, ile możesz, nawet 200 zł pomoże. dostajesz prostszą stronę, którą robimy pomiędzy większymi projektami, więc poczekasz trochę dłużej.'],
 ];
 const COUPONS: [string, string, string, string, number][] = [
-  ['restaurant / café', 'restauracja / kawiarnia', 'dinner for two,\n1–2 times a month', 'kolacja dla dwojga,\n1–2 razy w miesiącu', -1],
+  ['restaurant / café', 'restauracja / kawiarnia', 'dinner for two,\n1-2 times a month', 'kolacja dla dwojga,\n1-2 razy w miesiącu', -1],
   ['shop', 'sklep', 'a voucher for\nyour shop', 'bon na zakupy\nw twoim sklepie', 1],
   ['salon / studio', 'salon / studio', 'cuts, nails or treatments\nfor the team', 'strzyżenie, paznokcie\nalbo zabiegi dla ekipy', 0],
   ['something else', 'coś innego', "tell us what you've got", 'powiedz, co masz', 1],

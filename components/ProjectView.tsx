@@ -55,7 +55,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
         <div className="ruler-left abs" style={{ backgroundColor: ruler }} aria-hidden />
         <Link className="abs pv-crumb" href={href(lang, '/') + '#work'} style={{ color: C.bg === '#0b0a09' ? '#0b0a09' : C.bg }}>{tr(lang, 'crumbs')} {p.name}</Link>
         <div className="abs pv-img" style={{ left: u(24), top: u(24), width: u(1416), height: `calc(var(--u) * 776 - var(--crop))` }}>
-          <img src={p.shot} alt={`${p.name} — ${p.where[lang]}`} />
+          <img src={p.shot} alt={`${p.name} · ${p.where[lang]}`} />
         </div>
 
         {vs && (
@@ -104,7 +104,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
           {vs ? (
             <div className="pvm-bad"><BadSite slug={p.slug} lang={lang} /></div>
           ) : (
-            <img src={p.phone} alt={`${p.name} — ${p.where[lang]}`} />
+            <img src={p.phone} alt={`${p.name} · ${p.where[lang]}`} />
           )}
         </div>
         <div className="pvm-bar" style={{ ['--ink' as string]: C.ink }}>{Bar}</div>

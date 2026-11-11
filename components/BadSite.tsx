@@ -29,7 +29,7 @@ export default function BadSite({ slug, lang }: { slug: string; lang: Lang }) {
     return (
       <div className="bad" style={{ background: '#f5f1ea' }}>
         <Tx x={208} y={48} s={10} f={MS} c="#5a5148" w={300}>{L('HOME      OUR STORY      MENU      VISIT US', 'START      NASZA HISTORIA      MENU      ODWIEDŹ NAS')}</Tx>
-        <Tx x={326} y={72} s={9} f={MS} c="#9a8f84" w={300}>{L('—  the bakery  —', '—  piekarnia  —')}</Tx>
+        <Tx x={326} y={72} s={9} f={MS} c="#9a8f84" w={300}>{L('·  the bakery  ·', '·  piekarnia  ·')}</Tx>
         <div style={{ ...P(24, 100, 706, 330), background: 'url(/a/croissant.webp) center 40%/cover', filter: 'sepia(.5) saturate(.6) brightness(.85)' }} />
         <div style={{ ...P(24, 100, 706, 330), background: 'rgba(0,0,0,.18)' }} />
         <Tx x={0} y={220} s={34} f={MS} c="#fff" w={300} st={{ left: 0, width: '100%', textAlign: 'center', letterSpacing: '.12em' }}>{L('ARTISAN BAKERY', 'PIEKARNIA RZEMIEŚLNICZA')}</Tx>
@@ -69,7 +69,7 @@ export default function BadSite({ slug, lang }: { slug: string; lang: Lang }) {
         ))}
         <div style={{ ...P(54, 186, 190, 250), background: '#f3e9d2', border: '1px solid #d4af37' }} />
         <Tx x={68} y={198} s={18} f="'Lobster', cursive" c="#8b1a1a">{L('Opening Hours', 'Godziny otwarcia')}</Tx>
-        <Tx x={68} y={228} s={11} f={TI} c="#333">{L('Mon–Fri: 12:00–22:00\nSat–Sun: 12:00–23:00\n\nTel: +48 12 345 67 89', 'Pn–Pt: 12:00–22:00\nSob–Nd: 12:00–23:00\n\nTel: +48 12 345 67 89')}</Tx>
+        <Tx x={68} y={228} s={11} f={TI} c="#333">{L('Mon-Fri: 12:00-22:00\nSat-Sun: 12:00-23:00\n\nTel: +48 12 345 67 89', 'Pn-Pt: 12:00-22:00\nSob-Nd: 12:00-23:00\n\nTel: +48 12 345 67 89')}</Tx>
         <div style={{ ...P(68, 320, 160, 100), background: '#3b5998' }} />
         <Tx x={76} y={334} s={9} f={IN} c="#fff" w={700}>{L('f  Like us on Facebook!\n    1,204 people like this', 'f  Polub nas na Facebooku!\n    1 204 osoby to lubią')}</Tx>
         <div style={{ ...P(76, 380, 60, 20), background: '#fff', font: `400 ${u(10)}/${u(20)} ${IN}`, color: '#3b5998', textAlign: 'center' }}>{L('Like', 'Lubię')}</div>
@@ -79,7 +79,7 @@ export default function BadSite({ slug, lang }: { slug: string; lang: Lang }) {
         <Tx x={276} y={286} s={13} f={TI} c="#0000ee" st={{ textDecoration: 'underline' }}>{L('» Download our menu (PDF, 4.2 MB)', '» Pobierz nasze menu (PDF, 4,2 MB)')}</Tx>
         {['/a/pizza.webp', '/a/carbo.webp', '/a/gn-s3.webp'].map((s, i) => <div key={s} style={{ ...P(276 + i * 140, 320, 128, 96), border: '3px solid #fff', background: `url(${s}) center/cover`, filter: 'saturate(1.4) contrast(1.1)' }} />)}
         <div style={{ ...P(54, 444, 646, 22), background: '#ffff66', overflow: 'hidden' }}>
-          <span className="marq" style={{ font: `400 ${u(12)}/${u(22)} ${TI}`, color: '#cc0000' }}>{L('*** NEW!!! Pizza Tuesday – 2nd pizza 50% off!!! ***   *** NEW!!! Pizza Tuesday ***   ', '*** NOWOŚĆ!!! Pizza we wtorki – druga pizza 50% taniej!!! ***   *** NOWOŚĆ!!! ***   ').repeat(2)}</span>
+          <span className="marq" style={{ font: `400 ${u(12)}/${u(22)} ${TI}`, color: '#cc0000' }}>{L('*** NEW!!! Pizza Tuesday - 2nd pizza 50% off!!! ***   *** NEW!!! Pizza Tuesday ***   ', '*** NOWOŚĆ!!! Pizza we wtorki - druga pizza 50% taniej!!! ***   *** NOWOŚĆ!!! ***   ').repeat(2)}</span>
         </div>
         <div style={{ ...P(68, 476, 60, 60), background: '#34e0a1', borderRadius: '50%' }} />
         <Tx x={136} y={478} s={10} f={IN} c="#e8d9b5" w={700}>{L('Tripadvisor\nCertificate of\nExcellence 2014', 'Tripadvisor\nCertyfikat\nDoskonałości 2014')}</Tx>

@@ -47,14 +47,14 @@ export default function Work({ lang }: { lang: Lang }) {
           return (
             <div key={q.slug}>
               <p className="abs tlabel" style={{ left: u(x), top: u(y - 20), color: hov === null || on ? (hov === null ? '#9e8a86' : k.ink) : k.dim }}>
-                {q.name} — {q.where[lang]}
+                {q.name} · {q.where[lang]}
               </p>
               <Link
                 href={href(lang, `/work/${q.slug}/`)}
                 className={'abs thumb' + (on ? ' on' : '')}
                 style={{ left: u(x), top: u(y), width: u(520), height: u(325), outlineColor: k.sel === 'transparent' ? k.ink : k.sel }}
                 onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)} onFocus={() => setHov(i)} onBlur={() => setHov(null)}
-                aria-label={`${q.name} — ${q.where[lang]}`}
+                aria-label={`${q.name} · ${q.where[lang]}`}
               >
                 <img src={q.shot.replace('.webp', '-t.webp')} alt="" loading="lazy" />
               </Link>
@@ -96,7 +96,7 @@ function WorkMobile({ lang }: { lang: Lang }) {
       <p className="wm-c" style={{ color: p.c.dim }}>{tr(lang, 'work_count')}</p>
       {projects.map((q, i) => (
         <Link key={q.slug} href={href(lang, `/work/${q.slug}/`)} data-i={i} ref={(el) => { refs.current[i] = el; }} className={'wm-card' + (act === i ? ' on' : '')}>
-          <span style={{ color: act === i ? q.c.ink : p.c.dim }}>{q.name} — {q.where[lang]}</span>
+          <span style={{ color: act === i ? q.c.ink : p.c.dim }}>{q.name} · {q.where[lang]}</span>
           <img src={q.shot.replace('.webp', '-t.webp')} alt="" loading="lazy" style={{ outlineColor: q.c.ink }} />
         </Link>
       ))}

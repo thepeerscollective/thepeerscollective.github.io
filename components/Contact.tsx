@@ -135,10 +135,10 @@ export default function Contact({ lang }: { lang: Lang }) {
       'budżet / budget': bud ? bud.pl : '',
       'jednym zdaniem / one sentence': line,
       'rozmowa / talk': talkO ? talkO.pl : '',
-      'termin / time': isMail ? '—' : slotTxt,
+      'termin / time': isMail ? '-' : slotTxt,
       'odpisz na / reply to': reply,
       'język / lang': lang,
-      'nagranie / voice': blob.current ? 'w załączniku' : '—',
+      'nagranie / voice': blob.current ? 'w załączniku' : '-',
     };
     try {
       if (blob.current) {

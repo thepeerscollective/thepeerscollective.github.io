@@ -64,7 +64,7 @@ export default function Hero({ lang }: { lang: Lang }) {
 
   return (
     <section className="hero" aria-label="peerscollective">
-      <h1 className="sr">peerscollective — {tr(lang, 'tagline')}</h1>
+      <h1 className="sr">peerscollective · {tr(lang, 'tagline')}</h1>
       {/* ---------- desktop ---------- */}
       <div className="stage hero-d desk-only">
         <Rulers />
