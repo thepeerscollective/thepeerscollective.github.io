@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   title: 'peerscollective · web design & creative direction',
   description: 'karina beers · web design, branding and creative direction for small places with character: bakeries, trattorias, chicken shops, salons.',
   icons: { icon: '/favicon.svg' },
-  openGraph: { title: 'peerscollective', description: 'web design & creative direction. the c is crooked. fix it.', images: ['/w/heavy-cream.webp'] },
+  openGraph: { title: 'peerscollective', description: 'web design & creative direction. made by karina.', url: 'https://thepeerscollective.com', siteName: 'peerscollective', type: 'website', images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'peerscollective — web design & creative direction' }] },
+  twitter: { card: 'summary_large_image', images: ['/og.jpg'] },
 };
 export const viewport: Viewport = { themeColor: '#170507', width: 'device-width', initialScale: 1 };
 
