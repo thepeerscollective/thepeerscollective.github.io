@@ -76,10 +76,10 @@ export default function Hero({ lang }: { lang: Lang }) {
         <div className="abs coord" style={{ left: u(420), top: vy(196) }} aria-hidden>x 412 · y 188</div>
         <TopNav lang={lang} />
 
-        <div className="abs word" style={{ left: u(150), top: vy(300) }} aria-hidden>peers</div>
+        <div className="abs word" style={{ left: u(150), top: vy(300) }} aria-hidden>peer<span className="kern-s">s</span></div>
         <div
           className={'abs word cdrag' + (c.done ? ' ok' : '') + (c.dragging ? ' drag' : '')}
-          style={{ left: u(598), top: vy(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
+          style={{ left: u(590), top: vy(300), transform: `translate(${u(c.pos.x)}, ${u(c.pos.y)}) rotate(${c.done ? 0 : rotOf(c.pos, BROKEN)}deg)` }}
           role="button" tabIndex={0}
           aria-label={lang === 'en' ? 'the c is crooked. drag it into place, or press enter to fix it' : 'c jest krzywe. przeciągnij je na miejsce albo naciśnij enter'}
           {...c.bind}
@@ -92,7 +92,7 @@ export default function Hero({ lang }: { lang: Lang }) {
             </span>
           )}
         </div>
-        <div className="abs word" style={{ left: u(fixed ? 686 : 690), top: vy(300), transition: 'left .4s' }} aria-hidden>ollective</div>
+        <div className="abs word" style={{ left: u(fixed ? 678 : 682), top: vy(300), transition: 'left .4s' }} aria-hidden>ollective</div>
 
         {!fixed && (
           <>
@@ -134,7 +134,7 @@ export default function Hero({ lang }: { lang: Lang }) {
         <LangSwitch lang={lang} className="abs mlang" />
         <p className="abs mtop" style={{ left: m(20), top: m(36) }}>karina · peerscollective</p>
         <MobMenu lang={lang} />
-        <div className="abs mword" style={{ left: m(24), top: m(280) }} aria-hidden>peers</div>
+        <div className="abs mword" style={{ left: m(24), top: m(280) }} aria-hidden>peer<span className="kern-s">s</span></div>
         <div
           className={'abs mword cdrag' + (cm.done ? ' ok' : '')}
           style={{ left: m(20), top: m(372), transform: `translate(${m(cm.pos.x)}, ${m(cm.pos.y)}) rotate(${cm.done ? 0 : rotOf(cm.pos, { x: -8, y: 18 }) * 1.6}deg)` }}

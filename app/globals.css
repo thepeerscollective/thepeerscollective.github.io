@@ -603,3 +603,4 @@ a { color: inherit; text-decoration: none; }
 .pvm-bar .pv-visit { width: 40%; }
 
 .hero-d { --crop: max(0px, calc(var(--u) * 900 - 100svh)); height: min(calc(var(--u) * 900), 100svh); min-height: calc(var(--u) * 640); }
+.kern-s { margin-left: -0.075em; }
