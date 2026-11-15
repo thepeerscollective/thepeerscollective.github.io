@@ -1,29 +1,31 @@
 'use client';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { projects, type Lang } from '@/lib/projects';
 import { tr, href } from '@/lib/i18n';
 import { u } from '@/lib/u';
 import { Cursor, LangSwitch } from './bits';
 
-/* 3 × 4 grid, figma frame coordinates; the 12th slot is yours */
-const POS = Array.from({ length: 12 }, (_, i) => [300 + (i % 3) * 370, 140 + Math.floor(i / 3) * 268]);
-const TW = 340, TH = 212;
+/* 4 × 3 grid, figma frame coordinates; the 12th slot is yours. fits one laptop screen */
+const TW = 248, TH = 155;
+const POS = Array.from({ length: 12 }, (_, i) => [300 + (i % 4) * 284, 168 + Math.floor(i / 4) * 200]);
+export const CATS: [string, string, string][] = [['eat', 'eat', 'zjeść'], ['out', 'go out', 'wyjść wieczorem'], ['look', 'look good', 'dobrze wyglądać'], ['calm', 'peace of mind', 'mieć spokój'], ['home', 'home', 'mieszkać']];
 const NIGHT = { bg: '#170507', panel: '#1f080c', ink: '#fff4e2', dim: '#9e8a86', sel: 'transparent', ruler: '#24090e' };
 
 export default function Work({ lang }: { lang: Lang }) {
   const [hov, setHov] = useState<number | null>(null);
+  const [cat, setCat] = useState<string | null>(null);
   const p = hov === null ? null : projects[hov];
   const k = p ? { bg: p.c.bg, panel: p.c.panel, ink: p.c.ink, dim: p.c.dim, sel: p.c.ink, ruler: p.c.panel } : NIGHT;
   if (p?.slug === 'grzywka') k.sel = '#a6d8f5';
 
   return (
     <section id="work" className="work" aria-label={tr(lang, 'nav_work')} style={{ background: k.bg, transition: 'background .45s' }}>
-      <div className="stage work-d desk-only" style={{ height: u(1240), background: k.bg, color: k.ink }}>
+      <div className="stage work-d desk-only" style={{ height: u(780), background: k.bg, color: k.ink }}>
         <div className="ruler-top abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <LangSwitch lang={lang} color={k.ink === '#ffffff' ? '#fff' : hov === null ? undefined : k.ink} />
-        <div className="abs layers" style={{ left: u(24), top: u(24), width: u(232), height: u(1216), background: k.panel }}>
+        <div className="abs layers" style={{ left: u(24), top: u(24), width: u(232), height: u(756), background: k.panel }}>
           <p className="lh" style={{ color: k.ink }}>{tr(lang, 'layers')}</p>
           <ul>
             <li style={{ color: k.ink }}>▾ {tr(lang, 'nav_work')}<span style={{ color: k.dim }}>👁</span></li>
@@ -44,17 +46,26 @@ export default function Work({ lang }: { lang: Lang }) {
 
         {p && <div key={p.slug} className="hand abs" style={{ left: u(300), top: u(40), fontSize: u(26), transform: 'rotate(-2deg)', color: p.slug === 'grzywka' ? '#fff' : '#ff3b30', zIndex: 6 }}>{p.hoverNote[lang]}</div>}
 
+        <div className="abs wfilter" role="group" aria-label={lang === 'pl' ? 'filtr' : 'filter'} style={{ left: u(300), top: u(104) }}>
+          <span style={{ color: k.dim }}>{lang === 'pl' ? 'strony, na których można…' : 'sites where you can…'}</span>
+          {CATS.map(([id, en, pl]) => (
+            <button key={id} type="button" aria-pressed={cat === id} onClick={() => setCat(cat === id ? null : id)} style={{ color: cat === id ? k.bg : k.ink, background: cat === id ? k.ink : 'transparent', borderColor: cat === id ? k.ink : k.dim }}>{lang === 'pl' ? pl : en}</button>
+          ))}
+          {cat && <button type="button" className="wf-x" onClick={() => setCat(null)} style={{ color: k.dim, borderColor: 'transparent' }}>× {lang === 'pl' ? 'wszystkie' : 'all'}</button>}
+        </div>
+
         {projects.map((q, i) => {
           const [x, y] = POS[i];
           const on = hov === i;
+          const off = !!cat && !q.cats.includes(cat);
           return (
             <div key={q.slug}>
-              <p className="abs tlabel" style={{ left: u(x), top: u(y - 20), color: hov === null || on ? (hov === null ? '#9e8a86' : k.ink) : k.dim }}>
+              <p className="abs tlabel" style={{ left: u(x), top: u(y - 20), width: u(TW), color: hov === null || on ? (hov === null ? '#9e8a86' : k.ink) : k.dim, opacity: off ? 0.25 : 1 }}>
                 {q.name} · {q.where[lang]}
               </p>
               <Link
                 href={href(lang, `/work/${q.slug}/`)}
-                className={'abs thumb' + (on ? ' on' : '')}
+                className={'abs thumb' + (on ? ' on' : '') + (cat && !off ? ' hit' : '') + (off ? ' off' : '')}
                 style={{ left: u(x), top: u(y), width: u(TW), height: u(TH), outlineColor: k.sel === 'transparent' ? k.ink : k.sel }}
                 onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)} onFocus={() => setHov(i)} onBlur={() => setHov(null)}
                 aria-label={`${q.name} · ${q.where[lang]}`}
@@ -74,10 +85,10 @@ export default function Work({ lang }: { lang: Lang }) {
 
 
 
-        <Cursor x={890} y={558} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
-        <Cursor x={1190} y={1064} color="#ff4fa0" label={tr(lang, 'you')} />
-        <p className="abs hint" style={{ left: u(300), top: u(1208), color: k.dim }}>{p ? p.hoverLine[lang] : ''}</p>
-        <span className="abs zoom" style={{ left: u(1360), top: u(1200), background: k.panel, color: k.ink }}>24%</span>
+        <Cursor x={760} y={432} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
+        <Cursor x={1196} y={640} color="#ff4fa0" label={tr(lang, 'you')} />
+        <p className="abs hint" style={{ left: u(300), top: u(748), color: k.dim }}>{p ? p.hoverLine[lang] : ''}</p>
+        <span className="abs zoom" style={{ left: u(1360), top: u(740), background: k.panel, color: k.ink }}>24%</span>
       </div>
 
       <WorkMobile lang={lang} />
@@ -86,24 +97,29 @@ export default function Work({ lang }: { lang: Lang }) {
 }
 
 function WorkMobile({ lang }: { lang: Lang }) {
-  const [act, setAct] = useState(0);
-  const refs = useRef<(HTMLAnchorElement | null)[]>([]);
-  useEffect(() => {
-    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) setAct(Number((e.target as HTMLElement).dataset.i)); }), { rootMargin: '-45% 0px -45% 0px' });
-    refs.current.forEach((r) => r && io.observe(r));
-    return () => io.disconnect();
-  }, []);
-  const p = projects[act];
+  const [cat, setCat] = useState<string | null>(null);
+  const list = projects.filter((q) => !cat || q.cats.includes(cat));
   return (
-    <div className="work-m mob-only" style={{ background: p.c.bg, color: p.c.ink }}>
+    <div className="work-m mob-only">
       <p className="wm-h">peerscollective</p>
-      <p className="wm-c" style={{ color: p.c.dim }}>{tr(lang, 'work_count')}</p>
-      {projects.map((q, i) => (
-        <Link key={q.slug} href={href(lang, `/work/${q.slug}/`)} data-i={i} ref={(el) => { refs.current[i] = el; }} className={'wm-card' + (act === i ? ' on' : '')}>
-          <span style={{ color: act === i ? q.c.ink : p.c.dim }}>{q.name} · {q.where[lang]}</span>
-          <img src={q.shot.replace('.webp', '-t.webp')} alt="" loading="lazy" style={{ outlineColor: q.c.ink }} />
-        </Link>
-      ))}
+      <p className="wm-c">{tr(lang, 'work_count')}</p>
+      <div className="wm-f" role="group" aria-label={lang === 'pl' ? 'filtr' : 'filter'}>
+        {CATS.map(([id, en, pl]) => (
+          <button key={id} type="button" aria-pressed={cat === id} onClick={() => setCat(cat === id ? null : id)}>{lang === 'pl' ? pl : en}</button>
+        ))}
+      </div>
+      <div className="wm-grid">
+        {list.map((q) => (
+          <Link key={q.slug} href={href(lang, `/work/${q.slug}/`)} className="wm-card" style={{ background: q.c.bg, color: q.c.ink }}>
+            <img src={q.shot.replace('.webp', '-t.webp')} alt="" loading="lazy" />
+            <b>{q.name}</b>
+            <span style={{ color: q.c.dim }}>{q.where[lang]}</span>
+          </Link>
+        ))}
+        {!cat && (
+          <Link href={href(lang, '/contact/')} className="wm-card wm-yours">[ + {lang === 'pl' ? 'twój projekt' : 'your project'} ]</Link>
+        )}
+      </div>
     </div>
   );
 }

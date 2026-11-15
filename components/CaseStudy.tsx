@@ -54,6 +54,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <span className="abs cs-n" style={{ left: u(80), top: u(80), color: dim }}>{nn}</span>
         <h2 className="abs serif cs-title" style={{ left: u(72), top: u(96) }}>{p.name}</h2>
         <p className="abs cs-scope pre" style={{ left: u(84), top: u(290) }}>{p.scope[lang]}</p>
+        <p className="abs cs-out" style={{ left: u(84), top: u(340), width: u(620) }}>{p.outcome[lang]}</p>
         <div className="hand abs" style={{ left: u(1010), top: u(150), fontSize: u(34), transform: 'rotate(-4deg)' }}>{tr(lang, 'whole_thing')}</div>
 
         <span className="abs cs-sec" style={{ left: u(80), top: u(400) }}>{tr(lang, 'the_brand')}</span>
@@ -131,6 +132,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <span className="cs-n" style={{ color: dim }}>{nn}</span>
         <h2 className="serif cs-mtitle">{p.name}</h2>
         <p className="pre cs-mscope">{p.scope[lang]}</p>
+        <p className="cs-out">{p.outcome[lang]}</p>
         <p className="hand" style={{ fontSize: 28, transform: 'rotate(-3deg)', margin: '18px 0 30px' }}>{tr(lang, 'whole_thing')}</p>
         <span className="cs-sec">{tr(lang, 'the_brand')}</span>
         <hr style={{ borderColor: ink }} />

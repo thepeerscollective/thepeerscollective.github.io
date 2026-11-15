@@ -39,6 +39,8 @@ export type Project = {
     linkInk?: string; // 'try it' links in the steal window
     ctaInk?: string; // text on the steal window button
   };
+  outcome: T; // one sentence: what the site does for the business
+  cats: string[];
   short?: string;
   noteBg?: string;
   swatchAt?: [number, number];
@@ -60,6 +62,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: 'heavy-cream',
+    outcome: t("Pre-order tomorrow's croissants until 9pm, so the bakery bakes what is already sold.", 'Zamawiasz jutrzejsze croissanty do 21:00, więc piekarnia piecze to, co już sprzedane.'),
+    cats: ['eat'],
     n: 1,
     name: 'heavy cream',
     live: '/heavy-cream/',
@@ -119,6 +123,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'gnam',
+    outcome: t('Menu, booking and the way there fit on order tickets you read in ten seconds.', 'Menu, rezerwacja i dojazd mieszczą się na bloczkach, które czytasz w dziesięć sekund.'),
+    cats: ['eat', 'out'],
     n: 2,
     name: 'gnam',
     live: '/gnam/',
@@ -174,6 +180,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'dakdak',
+    outcome: t('Order pick-up online and watch your number come up, like at the counter.', 'Zamawiasz na wynos online i widzisz swój numerek, jak przy ladzie.'),
+    cats: ['eat', 'out'],
     n: 3,
     name: 'dakdak',
     live: '/dakdak/',
@@ -228,6 +236,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'grzywka',
+    outcome: t('The cuts are on the site, so you show the fringe you want instead of describing it.', 'Cięcia są na stronie, więc pokazujesz grzywkę, zamiast ją opisywać.'),
+    cats: ['look'],
     n: 4,
     name: 'grzywka',
     live: '/grzywka/',
@@ -283,6 +293,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'mieta',
+    outcome: t('Prices before treatment and a visit booked in three taps, no phone call.', 'Ceny przed leczeniem i wizyta w trzy kliknięcia, bez dzwonienia.'),
+    cats: ['look', 'calm'],
     n: 5,
     name: 'mięta',
     short: 'mt',
@@ -344,6 +356,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'karta',
+    outcome: t('Owners book online and tell the vet what their pet is scared of before the visit.', 'Opiekun umawia się online i mówi lekarzowi, czego boi się zwierzak, jeszcze przed wizytą.'),
+    cats: ['calm'],
     n: 6,
     name: 'karta',
     short: 'kt',
@@ -405,6 +419,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'lipinska-kruk',
+    outcome: t('Every clause has a plain-language version, so clients know what they sign.', 'Każdy zapis ma wersję po ludzku, więc klient wie, co podpisuje.'),
+    cats: ['calm'],
     n: 7,
     name: 'lipińska kruk',
     short: 'lk',
@@ -466,6 +482,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'zaklad58',
+    outcome: t('Guests pick a loft by its floor plan and its record player, not by a grey photo.', 'Gość wybiera loft po rzucie i gramofonie, a nie po szarym zdjęciu.'),
+    cats: ['home'],
     n: 8,
     name: 'zakład 58',
     short: 'zk',
@@ -526,6 +544,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'modul',
+    outcome: t('Clients build a room from the catalogue and see the price before the first meeting.', 'Klient składa pokój z katalogu i widzi cenę przed pierwszym spotkaniem.'),
+    cats: ['home'],
     n: 9,
     name: 'moduł',
     short: 'md',
@@ -587,6 +607,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'radiowa58',
+    outcome: t("The week's music is on the home page and a table is booked without a phone call.", 'Muzyka na cały tydzień jest na stronie głównej, a stolik rezerwuje się bez dzwonienia.'),
+    cats: ['out'],
     n: 10,
     name: 'radiowa 58',
     short: 'br',
@@ -647,6 +669,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'pod-zegarem',
+    outcome: t('Pick your seat on the real seating plan, no call to the box office.', 'Miejsce wybierasz na prawdziwym planie widowni, bez dzwonienia do kasy.'),
+    cats: ['out'],
     n: 11,
     name: 'pod zegarem',
     short: 'pz',
