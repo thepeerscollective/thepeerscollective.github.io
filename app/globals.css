@@ -134,6 +134,8 @@ a { color: inherit; text-decoration: none; }
 .thumb { z-index: 3; overflow: hidden; outline: 0 solid; outline-offset: calc(var(--u) * 3); transition: outline-width .15s; }
 .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1) contrast(.9) brightness(.85); opacity: .38; transition: filter .45s, opacity .45s, transform .6s cubic-bezier(.2,.8,.2,1); }
 .thumb.on { outline-width: 1px; }
+.thumb.yours { display: grid; place-items: center; border: 1px dashed; font: 400 calc(var(--u) * 11) / 1 var(--mono); text-decoration: none; transition: color .3s, border-color .3s; }
+.thumb.yours:hover { opacity: .8; }
 .thumb.on img { filter: none; opacity: 1; transform: scale(1.015); }
 .proto { pointer-events: none; z-index: 4; }
 .proto path { fill: none; stroke: #0d99ff; stroke-width: 1.5; }

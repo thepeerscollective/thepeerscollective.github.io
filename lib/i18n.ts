@@ -34,7 +34,7 @@ const d = {
   work_hint: ['hover a project → it gets its colour back and paints the whole canvas', 'najedź na projekt → odzyskuje kolor i maluje nim całe płótno'],
   work_hint_m: ['scroll → the card in the middle gets its colour back', 'przewijaj → karta na środku odzyskuje kolor'],
   you: ['you (future client?)', 'ty (może nasza klientka?)'],
-  work_count: ['work · 4 sites', 'projekty · 4 strony'],
+  work_count: ['work · 11 sites', 'projekty · 11 stron'],
   // project
   see_how: ["see how it's made", 'jak to jest zrobione'],
   visit: ['visit ↗', 'zobacz stronę ↗'],

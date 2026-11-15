@@ -4,7 +4,23 @@ import '@fontsource/lobster/400.css';
 import '@fontsource/tinos/400.css';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/700.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/tinos/700.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/700.css';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/nunito/700.css';
+import '@fontsource/arimo/400.css';
+import '@fontsource/arimo/700.css';
+import '@fontsource/cinzel/700.css';
+import '@fontsource/raleway/300.css';
+import '@fontsource/raleway/400.css';
+import '@fontsource/raleway/500.css';
+import '@fontsource/oswald/400.css';
+import '@fontsource/oswald/700.css';
 import type { CSSProperties, ReactNode } from 'react';
+import { BAD, type BadEl } from '@/lib/badspecs';
 import type { Lang } from '@/lib/projects';
 import { u } from '@/lib/u';
 
@@ -23,8 +39,33 @@ const MS = "'Montserrat', sans-serif";
 const IN = "'Inter', sans-serif";
 const TI = "'Tinos', 'Times New Roman', serif";
 
+const W: Record<string, number> = { Light: 300, Regular: 400, Medium: 500, Bold: 700 };
+const FAM = (f?: string) => (!f ? IN : f === 'IBM Plex Mono' ? 'var(--mono)' : `'${f}', sans-serif`);
+
+/** the newer projects: drawn from a spec, one element per figma layer */
+function BadSpec({ els, lang }: { els: BadEl[]; lang: Lang }) {
+  const txt = (e: BadEl) => ((lang === 'en' ? e.en : e.pl) ?? '').replace(/⏎/g, '\n');
+  return (
+    <div className="bad" style={{ background: '#fff' }}>
+      {els.map((e, i) => {
+        if (e.k === 'R') return <div key={i} style={{ ...P(e.x, e.y, e.w, e.h), background: e.fill ?? 'transparent', opacity: e.op ?? 1, border: e.st ? `1px solid ${e.st}` : undefined, borderRadius: e.r ? u(e.r) : undefined }} />;
+        if (e.k === 'I') return e.src
+          ? <div key={i} style={{ ...P(e.x, e.y, e.w, e.h), background: `url(${e.src}) center/cover`, filter: e.flt }} />
+          : <div key={i} style={{ ...P(e.x, e.y, e.w, e.h), background: e.fill ?? '#cfcfcf' }} />;
+        if (e.k === 'T') return (
+          <span key={i} style={{ ...P(e.x, e.y, e.w), fontFamily: FAM(e.f), fontWeight: W[e.s ?? 'Regular'] ?? 400, fontSize: u(e.z ?? 12), color: e.c ?? '#222', lineHeight: e.lh ? e.lh / 100 : 1.25, letterSpacing: e.ls ? `${e.ls / 100}em` : undefined, whiteSpace: e.w ? 'pre-line' : 'pre', transform: e.rot ? `rotate(${e.rot}deg)` : undefined }}>{txt(e)}</span>
+        );
+        if (e.k === 'N') return <Note key={i} x={e.x} y={e.y} r={e.rot ?? -3}>{txt(e)}</Note>;
+        if (e.k === 'TAG') { const t = txt(e); return <Tag key={i} x={e.x} y={e.y} w={t.length * 6.3 + 24}>{t}</Tag>; }
+        return null;
+      })}
+    </div>
+  );
+}
+
 export default function BadSite({ slug, lang }: { slug: string; lang: Lang }) {
   const L = (en: string, pl: string) => (lang === 'en' ? en : pl);
+  if (BAD[slug]) return <BadSpec els={BAD[slug]} lang={lang} />;
   if (slug === 'heavy-cream')
     return (
       <div className="bad" style={{ background: '#f5f1ea' }}>

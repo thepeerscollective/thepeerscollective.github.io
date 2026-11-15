@@ -34,7 +34,11 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
   const nb = nxt ? nxt.c.bg : '#170507';
   const ni = nxt ? nxt.c.ink : '#fff4e2';
   const hcType = p.slug === 'heavy-cream';
-  const rows = hcType ? [] : p.type;
+  const imgType = !!p.type[0]?.img;
+  const nn = `${String(p.n).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}`;
+  const mock = p.mock ?? `/a/mock-${p.slug === 'heavy-cream' ? 'hc' : p.slug === 'gnam' ? 'gn' : p.slug === 'dakdak' ? 'dk' : 'gz'}.webp`;
+  const small = SMALL[p.slug] ?? SMALL.gnam;
+  const rows = imgType ? [] : p.type;
   const rowGap = rows.length === 4 ? 48 : 60;
   const rowY0 = rows.length === 4 ? 788 : 798;
   const sampleX = p.slug === 'gnam' ? 620 : p.slug === 'dakdak' ? 600 : 640;
@@ -47,7 +51,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
     <section className="cs" style={{ background: bg, color: ink }} aria-label="case study">
       {/* ---------- desktop ---------- */}
       <div className="stage desk-only" style={{ height: u(2350) }}>
-        <span className="abs cs-n" style={{ left: u(80), top: u(80), color: dim }}>0{p.n} / 04</span>
+        <span className="abs cs-n" style={{ left: u(80), top: u(80), color: dim }}>{nn}</span>
         <h2 className="abs serif cs-title" style={{ left: u(72), top: u(96) }}>{p.name}</h2>
         <p className="abs cs-scope pre" style={{ left: u(84), top: u(290) }}>{p.scope[lang]}</p>
         <div className="hand abs" style={{ left: u(1010), top: u(150), fontSize: u(34), transform: 'rotate(-4deg)' }}>{tr(lang, 'whole_thing')}</div>
@@ -55,7 +59,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <span className="abs cs-sec" style={{ left: u(80), top: u(400) }}>{tr(lang, 'the_brand')}</span>
         <div className="abs cs-line" style={{ left: u(80), top: u(420), width: u(1280), background: ink }} />
         <div className="abs cs-tile cs-logo" style={{ left: u(80), top: u(444), width: u(620), height: u(300) }}>
-          <img src={`/a/mock-${p.slug === 'heavy-cream' ? 'hc' : p.slug === 'gnam' ? 'gn' : p.slug === 'dakdak' ? 'dk' : 'gz'}.webp`} alt={`${p.name} logo`} loading="lazy" />
+          <img src={mock} alt={`${p.name} logo`} loading="lazy" />
           <span className="cs-wild">{tr(lang, 'in_wild')}</span>
         </div>
         <div className="abs cs-tile" style={{ left: u(720), top: u(444), width: u(640), height: u(300), background: C.tile }} />
@@ -67,9 +71,9 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
           </div>
         ))}
         <div className="abs cs-tile" style={{ left: u(80), top: u(764), width: u(1280), height: u(220), background: C.tile }} />
-        {hcType ? (
+        {imgType ? (
           <>
-            <img className="abs" src={p.aa.img} alt="" style={{ left: u(110), top: u(780), width: u(179) }} loading="lazy" />
+            <img className="abs" src={p.aa.img} alt="" style={{ left: u(110), top: u(780), width: u(p.aa.w ?? 179) }} loading="lazy" />
             {p.type.map((t, i) => {
               const col = i < 3 ? 380 : 820;
               const y = 782 + (i % 3) * 64;
@@ -100,7 +104,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <div className="hand abs" style={{ left: u(hcType ? 494 : 520), top: u(1018), fontSize: u(24), transform: 'rotate(-3deg)', zIndex: 3 }}>{p.s2.bigNote[lang]}</div>
         <div className="abs cs-tile" style={{ left: u(720), top: u(1084), width: u(640), height: u(440), background: C.tile }} />
         {p.s2.small.map((s, i) => {
-          const [x, y, w, h] = SMALL[p.slug][i];
+          const [x, y, w, h] = small[i];
           return <img key={s} className="abs cs-img" src={s} alt="" loading="lazy" style={{ left: u(x), top: u(y), width: u(w), height: u(h), objectFit: hcType ? 'contain' : 'cover' }} />;
         })}
         <div className="hand abs" style={{ left: u(1000), top: u(hcType ? 1430 : 1400), fontSize: u(24), transform: 'rotate(2deg)' }}>{p.s2.smallNote[lang]}</div>
@@ -113,7 +117,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <div className="hand abs" style={{ left: u(120), top: u(2200), fontSize: u(26), transform: 'rotate(-2deg)' }}>{tr(lang, 'play_note')}</div>
         {p.tricks.map((t, i) => (
           <div key={i} className="abs cs-loop" style={{ left: u(520 + i * 290), top: u(1660), width: u(270), height: u(330), background: C.tile, borderColor: ink }}>
-            <div className="cs-loopimg" style={{ background: ink + '1f' }}><Loop slug={p.slug} i={i} /></div>
+            <div className="cs-loopimg" style={{ background: ink + '1f' }}><Loop slug={p.slug} i={i} lang={lang} /></div>
             <span className="cs-ln">0{i + 1}</span>
             <b style={{ color: ink }}>{t.title[lang]}</b>
             <span style={{ color: dim }}>{t.short[lang]}</span>
@@ -124,14 +128,14 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
 
       {/* ---------- phone ---------- */}
       <div className="cs-m mob-only">
-        <span className="cs-n" style={{ color: dim }}>0{p.n} / 04</span>
+        <span className="cs-n" style={{ color: dim }}>{nn}</span>
         <h2 className="serif cs-mtitle">{p.name}</h2>
         <p className="pre cs-mscope">{p.scope[lang]}</p>
         <p className="hand" style={{ fontSize: 28, transform: 'rotate(-3deg)', margin: '18px 0 30px' }}>{tr(lang, 'whole_thing')}</p>
         <span className="cs-sec">{tr(lang, 'the_brand')}</span>
         <hr style={{ borderColor: ink }} />
         <div className="cs-tile cs-logo cs-mlogo">
-          <img src={`/a/mock-${p.slug === 'heavy-cream' ? 'hc' : p.slug === 'gnam' ? 'gn' : p.slug === 'dakdak' ? 'dk' : 'gz'}.webp`} alt={`${p.name} logo`} loading="lazy" />
+          <img src={mock} alt={`${p.name} logo`} loading="lazy" />
           <span className="cs-wild">{tr(lang, 'in_wild')}</span>
         </div>
         <div className="cs-mpal" style={{ background: C.tile }}>
@@ -140,7 +144,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
           ))}
         </div>
         <div className="cs-mtype" style={{ background: C.tile }}>
-          {(hcType ? p.type : rows).map((t, i) => (
+          {(imgType ? p.type : rows).map((t, i) => (
             <div key={i}>
               <span style={{ color: dim }}>{t.label[lang]}</span>
               {t.img ? <img src={t.img} alt={t.label.en} loading="lazy" style={{ width: Math.min(t.imgW! * 0.9, 300) }} /> : <b style={{ ...ff(t.font), fontSize: Math.min(t.size, 28) }}>{t.sample}</b>}
@@ -157,7 +161,7 @@ export default function CaseStudy({ p, lang }: { p: Project; lang: Lang }) {
         <hr style={{ borderColor: ink }} />
         {p.tricks.map((t, i) => (
           <div key={i} className="cs-mloop" style={{ background: C.tile, borderColor: ink }}>
-            <div className="cs-mloopimg"><Loop slug={p.slug} i={i} /></div>
+            <div className="cs-mloopimg"><Loop slug={p.slug} i={i} lang={lang} /></div>
             <div><span className="cs-ln">0{i + 1}</span> <b style={{ color: ink }}>{t.title[lang]}</b><br /><span style={{ color: dim }}>{t.short[lang]}</span></div>
           </div>
         ))}

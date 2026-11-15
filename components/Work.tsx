@@ -6,7 +6,9 @@ import { tr, href } from '@/lib/i18n';
 import { u } from '@/lib/u';
 import { Cursor, LangSwitch } from './bits';
 
-const POS = [[300, 140], [880, 140], [300, 520], [880, 520]];
+/* 3 × 4 grid, figma frame coordinates; the 12th slot is yours */
+const POS = Array.from({ length: 12 }, (_, i) => [300 + (i % 3) * 370, 140 + Math.floor(i / 3) * 268]);
+const TW = 340, TH = 212;
 const NIGHT = { bg: '#170507', panel: '#1f080c', ink: '#fff4e2', dim: '#9e8a86', sel: 'transparent', ruler: '#24090e' };
 
 export default function Work({ lang }: { lang: Lang }) {
@@ -17,11 +19,11 @@ export default function Work({ lang }: { lang: Lang }) {
 
   return (
     <section id="work" className="work" aria-label={tr(lang, 'nav_work')} style={{ background: k.bg, transition: 'background .45s' }}>
-      <div className="stage work-d desk-only" style={{ height: u(900), background: k.bg, color: k.ink }}>
+      <div className="stage work-d desk-only" style={{ height: u(1240), background: k.bg, color: k.ink }}>
         <div className="ruler-top abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <div className="ruler-left abs" style={{ backgroundColor: k.ruler }} aria-hidden />
         <LangSwitch lang={lang} color={k.ink === '#ffffff' ? '#fff' : hov === null ? undefined : k.ink} />
-        <div className="abs layers" style={{ left: u(24), top: u(24), width: u(232), height: u(876), background: k.panel }}>
+        <div className="abs layers" style={{ left: u(24), top: u(24), width: u(232), height: u(1216), background: k.panel }}>
           <p className="lh" style={{ color: k.ink }}>{tr(lang, 'layers')}</p>
           <ul>
             <li style={{ color: k.ink }}>▾ {tr(lang, 'nav_work')}<span style={{ color: k.dim }}>👁</span></li>
@@ -33,6 +35,7 @@ export default function Work({ lang }: { lang: Lang }) {
                 <span style={{ color: k.dim }}>👁</span>
               </li>
             ))}
+            <li style={{ color: k.ink, opacity: .6 }}><Link href={href(lang, '/contact/')}>&nbsp;&nbsp;◻ {lang === 'pl' ? 'twój projekt' : 'your project'}</Link><span style={{ color: k.dim }}>👁</span></li>
             <li style={{ color: k.ink }}><Link href={href(lang, '/about/')}>▸ {tr(lang, 'nav_about')}</Link><span style={{ color: k.dim }}>👁</span></li>
             <li style={{ color: k.ink }}><Link href={href(lang, '/offer/')}>▸ {tr(lang, 'nav_offer')}</Link><span style={{ color: k.dim }}>👁</span></li>
             <li style={{ color: k.ink }}><Link href={href(lang, '/contact/')}>▸ {tr(lang, 'nav_contact')}</Link><span style={{ color: k.dim }}>👁</span></li>
@@ -52,7 +55,7 @@ export default function Work({ lang }: { lang: Lang }) {
               <Link
                 href={href(lang, `/work/${q.slug}/`)}
                 className={'abs thumb' + (on ? ' on' : '')}
-                style={{ left: u(x), top: u(y), width: u(520), height: u(325), outlineColor: k.sel === 'transparent' ? k.ink : k.sel }}
+                style={{ left: u(x), top: u(y), width: u(TW), height: u(TH), outlineColor: k.sel === 'transparent' ? k.ink : k.sel }}
                 onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)} onFocus={() => setHov(i)} onBlur={() => setHov(null)}
                 aria-label={`${q.name} · ${q.where[lang]}`}
               >
@@ -62,18 +65,25 @@ export default function Work({ lang }: { lang: Lang }) {
           );
         })}
 
+        {(() => { const [x, y] = POS[projects.length] ?? POS[11]; return (
+          <div>
+            <p className="abs tlabel" style={{ left: u(x), top: u(y - 20), color: hov === null ? '#9e8a86' : k.dim }}>{lang === 'pl' ? 'twój projekt · ?' : 'your project · ?'}</p>
+            <Link href={href(lang, '/contact/')} className="abs thumb yours" style={{ left: u(x), top: u(y), width: u(TW), height: u(TH), borderColor: hov === null ? '#9e8a86' : k.dim, color: hov === null ? '#9e8a86' : k.dim }}>[ + {lang === 'pl' ? 'twój projekt tutaj' : 'your project here'} ]</Link>
+          </div>
+        ); })()}
+
         {hov === null && (
-          <svg className="abs proto" style={{ left: 0, top: 0, width: '100%', height: '100%' }} viewBox="0 0 1440 900" aria-hidden>
-            <path d="M822 230 C 850 230, 850 300, 878 300" /><circle cx="822" cy="230" r="5" />
-            <path d="M1140 467 C 1140 500, 560 480, 560 518" /><circle cx="1140" cy="467" r="5" />
-            <path d="M822 690 C 850 690, 850 760, 878 760" /><circle cx="822" cy="690" r="5" />
+          <svg className="abs proto" style={{ left: 0, top: 0, width: '100%', height: '100%' }} viewBox="0 0 1440 1240" aria-hidden>
+            <path d="M640 210 C 655 210, 655 280, 670 280" /><circle cx="640" cy="210" r="5" />
+            <path d="M1210 352 C 1210 380, 470 380, 470 408" /><circle cx="1210" cy="352" r="5" />
+            <path d="M1010 742 C 1025 742, 1025 812, 1040 812" /><circle cx="1010" cy="742" r="5" />
           </svg>
         )}
 
-        <Cursor x={1010} y={384} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
-        <Cursor x={640} y={824} color="#ff4fa0" label={tr(lang, 'you')} />
-        <p className="abs hint" style={{ left: u(300), top: u(868), color: k.dim }}>{p ? p.hoverLine[lang] : ''}</p>
-        <span className="abs zoom" style={{ left: u(1360), top: u(860), background: k.panel, color: k.ink }}>24%</span>
+        <Cursor x={890} y={558} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
+        <Cursor x={1190} y={1064} color="#ff4fa0" label={tr(lang, 'you')} />
+        <p className="abs hint" style={{ left: u(300), top: u(1208), color: k.dim }}>{p ? p.hoverLine[lang] : ''}</p>
+        <span className="abs zoom" style={{ left: u(1360), top: u(1200), background: k.panel, color: k.ink }}>24%</span>
       </div>
 
       <WorkMobile lang={lang} />

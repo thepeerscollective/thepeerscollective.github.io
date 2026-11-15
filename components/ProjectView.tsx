@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import type { Lang, Project } from '@/lib/projects';
+import { projects, type Lang, type Note, type Project } from '@/lib/projects';
 import { tr, href } from '@/lib/i18n';
 import { u } from '@/lib/u';
 import { LangSwitch } from './bits';
@@ -23,12 +23,12 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
   }, []);
   const C = p.c;
   const ruler = p.slug === 'grzywka' ? '#111111' : C.ink;
-  const nn = `0${p.n} / 04`;
+  const nn = `${String(p.n).padStart(2, '0')} / ${String(projects.length).padStart(2, '0')}`;
   const onToggle = () => { setInspect((v) => !v); setVs(false); };
   const onVs = () => { setVs((v) => !v); setInspect(false); };
   const showSteal = steal && !inspect && !vs;
-  const [sx, sy] = SWATCH_AT[p.slug];
-  const nb = NOTE_BG[p.slug];
+  const [sx, sy] = SWATCH_AT[p.slug] ?? p.swatchAt ?? [1100, 60];
+  const nb = NOTE_BG[p.slug] ?? p.noteBg;
 
   const Bar = (
     <>
@@ -67,6 +67,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
           <>
             <div className="abs" style={{ left: u(731), top: u(24), width: u(3), height: `calc(var(--u) * 776 - var(--crop))`, background: C.ink, zIndex: 9 }} aria-hidden />
             <span className="abs pv-label" style={{ left: u(756), top: u(40), background: C.ink, color: C.btnInk }}>{p.name}</span>
+            <Arrows notes={p.vsNotes} color={p.slug === 'grzywka' ? '#fff' : '#ff3b30'} />
             {p.vsNotes.map((n, i) => <div key={i} className="hand abs pv-note" style={{ left: u(n.x), top: u(n.y), fontSize: u(24), transform: `rotate(${n.r ?? 0}deg)`, zIndex: 9, color: p.slug === 'grzywka' ? '#fff' : undefined, background: nb }}>{n.text[lang]}</div>)}
           </>
         )}
@@ -82,6 +83,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
                 <i style={{ background: s.hex }} />{s.hex}
               </span>
             ))}
+            <Arrows notes={p.inspectNotes} color={p.slug === 'grzywka' ? '#fff' : '#ff3b30'} />
             {p.inspectNotes.map((n, i) => (
               <div key={i} className="hand abs pv-note" style={{ left: u(n.x), top: u(n.y), fontSize: u(26), transform: `rotate(${n.r ?? 0}deg)`, color: p.slug === 'grzywka' ? '#fff' : '#ff3b30', background: nb }}>{n.text[lang]}</div>
             ))}
@@ -130,7 +132,7 @@ export default function ProjectView({ p, lang }: { p: Project; lang: Lang }) {
 function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: () => void; mobile?: boolean }) {
   const C = p.c;
   const bar = p.slug === 'grzywka' ? '#de2a59' : C.ink;
-  const tb = p.slug === 'heavy-cream' ? '#ffe3ea' : p.slug === 'dakdak' ? '#0b0a09' : '#ffffff';
+  const tb = C.barText ?? (p.slug === 'heavy-cream' ? '#ffe3ea' : p.slug === 'dakdak' ? '#0b0a09' : '#ffffff');
   const title = p.slug === 'grzywka' ? '#de2a59' : C.ink;
   return (
     <div className={mobile ? 'steal steal-m' : 'abs steal'} style={mobile ? { background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink } : { left: u(1010), top: u(60), width: u(400), height: `min(calc(var(--u) * 700), calc(var(--u) * 740 - var(--crop)))`, background: C.window, borderColor: p.slug === 'grzywka' ? '#111' : C.ink }} role={mobile ? undefined : 'dialog'} aria-label={tr(lang, 'steal')}>
@@ -142,7 +144,7 @@ function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: 
       <div className="st-body">
         <h2 className="serif" style={{ color: title }}>{tr(lang, 'steal')}</h2>
         <p className="st-sub" style={{ color: C.body }}>{tr(lang, 'steal_sub')} {p.slug === 'grzywka' && lang === 'pl' ? 'grzywce' : p.name}.</p>
-        <div className="st-loop" style={{ background: C.soft }}><LoopCycle slug={p.slug} /></div>
+        <div className="st-loop" style={{ background: C.soft }}><LoopCycle slug={p.slug} lang={lang} /></div>
         {p.tricks.map((t, i) => (
           <div key={i} className="st-row" style={{ borderTopColor: i ? hexa(title, 0.15) : 'transparent' }}>
             <span className="st-n">0{i + 1}</span>
@@ -150,11 +152,11 @@ function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: 
               <h3 style={{ color: title }}>{t.title[lang]}</h3>
               <p style={{ color: C.body }}>{t.desc[lang]}</p>
             </div>
-            <a href={p.live} style={{ color: p.slug === 'heavy-cream' ? '#ff3b30' : p.slug === 'dakdak' ? '#efe6d6' : '#131414' }}>{tr(lang, 'try_it')}</a>
+            <a href={p.live} style={{ color: C.linkInk ?? (p.slug === 'heavy-cream' ? '#ff3b30' : p.slug === 'dakdak' ? '#efe6d6' : '#131414') }}>{tr(lang, 'try_it')}</a>
           </div>
         ))}
         <p className="st-end" style={{ color: C.body, borderTopColor: hexa(title, 0.3) }}>{tr(lang, 'steal_end')}</p>
-        <Link className="st-cta" href={href(lang, '/contact/')} style={{ background: title, color: p.slug === 'dakdak' ? '#141210' : p.slug === 'heavy-cream' ? '#ffe3ea' : '#fff' }}>{tr(lang, 'make_mine')}</Link>
+        <Link className="st-cta" href={href(lang, '/contact/')} style={{ background: title, color: C.ctaInk ?? (p.slug === 'dakdak' ? '#141210' : p.slug === 'heavy-cream' ? '#ffe3ea' : '#fff' )}}>{tr(lang, 'make_mine')}</Link>
       </div>
     </div>
   );
@@ -163,4 +165,25 @@ function Steal({ p, lang, onClose, mobile }: { p: Project; lang: Lang; onClose: 
 function hexa(h: string, a: number) {
   const n = parseInt(h.slice(1), 16);
   return `rgba(${(n >> 16) & 255},${(n >> 8) & 255},${n & 255},${a})`;
+}
+
+/** hand-drawn pointer from a note to the thing it talks about (frame coordinates) */
+function Arrows({ notes, color }: { notes: Note[]; color: string }) {
+  const list = notes.filter((n) => n.to);
+  if (!list.length) return null;
+  return (
+    <svg className="abs pv-arrows" viewBox="0 0 1440 800" preserveAspectRatio="none" style={{ left: 0, top: 0, width: '100%', height: `calc(var(--u) * 800)`, zIndex: 9, pointerEvents: 'none', overflow: 'visible' }} aria-hidden>
+      {list.map((n, i) => {
+        const [tx, ty] = n.to!;
+        const sx = tx < n.x ? n.x - 6 : n.x + 40, sy = ty > n.y + 20 ? n.y + 44 : n.y + 6;
+        const mx = (sx + tx) / 2 + (ty > sy ? 24 : -24), my = (sy + ty) / 2;
+        return (
+          <g key={i}>
+            <path d={`M${sx} ${sy} Q${mx} ${my} ${tx} ${ty}`} fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" vectorEffect="non-scaling-stroke" />
+            <circle cx={tx} cy={ty} r="4" fill={color} />
+          </g>
+        );
+      })}
+    </svg>
+  );
 }

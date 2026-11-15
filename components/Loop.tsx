@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { projects } from '@/lib/projects';
 
 /** 3-second loops of each trick, built from the sites' own pictures */
 function useTick(ms: number, n: number) {
@@ -130,13 +131,30 @@ const MAP: Record<string, () => React.ReactElement> = {
   'grzywka-0': Fringe, 'grzywka-1': Lookbook, 'grzywka-2': Burst,
 };
 
-export default function Loop({ slug, i }: { slug: string; i: number }) {
+/** generic loop: screenshots of the real site, one state after another */
+function Frames({ slug, i, lang }: { slug: string; i: number; lang: 'en' | 'pl' }) {
+  const p = projects.find((q) => q.slug === slug)!;
+  const tr = p.tricks[i];
+  const fr = tr.frames ?? [tr.img];
+  const k = useTick(fr.length > 1 ? 1100 : 3000, fr.length);
+  const tag = tr.tags?.[k]?.[lang];
+  return (
+    <div className="lp" style={{ background: p.c.tile }}>
+      {fr.map((f, n) => <Img key={f} src={f} on={n === k} />)}
+      {tag && <span className="lp-tag" style={{ background: p.c.ink, color: p.c.btnInk }}>{tag}</span>}
+    </div>
+  );
+}
+
+export default function Loop({ slug, i, lang = 'en' }: { slug: string; i: number; lang?: 'en' | 'pl' }) {
   const C = MAP[`${slug}-${i}`];
-  return C ? <C /> : null;
+  if (C) return <C />;
+  const p = projects.find((q) => q.slug === slug);
+  return p?.tricks[i] ? <Frames slug={slug} i={i} lang={lang} /> : null;
 }
 
 /** steal window: plays the three loops one after another, 3 s each */
-export function LoopCycle({ slug }: { slug: string }) {
-  const i = useTick(3000, 3);
-  return <Loop key={i} slug={slug} i={i} />;
+export function LoopCycle({ slug, lang }: { slug: string; lang?: 'en' | 'pl' }) {
+  const i = useTick(3300, 3);
+  return <Loop key={i} slug={slug} i={i} lang={lang} />;
 }
