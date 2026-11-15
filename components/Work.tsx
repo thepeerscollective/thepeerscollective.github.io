@@ -72,13 +72,7 @@ export default function Work({ lang }: { lang: Lang }) {
           </div>
         ); })()}
 
-        {hov === null && (
-          <svg className="abs proto" style={{ left: 0, top: 0, width: '100%', height: '100%' }} viewBox="0 0 1440 1240" aria-hidden>
-            <path d="M640 210 C 655 210, 655 280, 670 280" /><circle cx="640" cy="210" r="5" />
-            <path d="M1210 352 C 1210 380, 470 380, 470 408" /><circle cx="1210" cy="352" r="5" />
-            <path d="M1010 742 C 1025 742, 1025 812, 1040 812" /><circle cx="1010" cy="742" r="5" />
-          </svg>
-        )}
+
 
         <Cursor x={890} y={558} color="#7cc4ff" label={tr(lang, 'warsaw')} style={{ animation: 'drift 8s ease-in-out infinite alternate' }} />
         <Cursor x={1190} y={1064} color="#ff4fa0" label={tr(lang, 'you')} />
