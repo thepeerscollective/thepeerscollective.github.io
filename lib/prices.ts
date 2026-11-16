@@ -4,9 +4,9 @@ import type { Lang } from './projects';
 
 // ─────────────────────────────────────────────────────────────
 // CENY. zmieniasz tylko liczby poniżej. nic się nie przelicza samo.
-// każda waluta ma swoje ręczne kwoty.
+// każda waluta ma swoje ręczne kwoty, ustawione pod siłę nabywczą, nie kurs.
 // ─────────────────────────────────────────────────────────────
-export type Cur = 'pln' | 'eur';
+export type Cur = 'pln' | 'eur' | 'gbp' | 'usd';
 
 export const PRICES: Record<Cur, Record<string, number>> = {
   pln: {
@@ -26,19 +26,51 @@ export const PRICES: Record<Cur, Record<string, number>> = {
     pwyc: 200,           // „płać, ile możesz”, przykład w faq
   },
   eur: {
-    starter: 600,
-    main: 1200,
-    tasting: 1800,
-    feed: 220,
-    shoot: 290,
-    texts: 100,
-    page: 70,
-    booking: 40,
-    shop: 360,
-    care: 50,
-    anim: 70,
-    merch: 100,
-    sign: 150,
+    starter: 1500,
+    main: 3000,
+    tasting: 4500,
+    feed: 550,
+    shoot: 700,
+    texts: 250,
+    page: 180,
+    booking: 90,
+    shop: 900,
+    care: 120,
+    anim: 180,
+    merch: 250,
+    sign: 350,
+    pwyc: 50,
+  },
+  gbp: {
+    starter: 1300,
+    main: 2600,
+    tasting: 3900,
+    feed: 450,
+    shoot: 600,
+    texts: 200,
+    page: 160,
+    booking: 80,
+    shop: 800,
+    care: 100,
+    anim: 160,
+    merch: 200,
+    sign: 300,
+    pwyc: 40,
+  },
+  usd: {
+    starter: 1600,
+    main: 3200,
+    tasting: 4800,
+    feed: 600,
+    shoot: 750,
+    texts: 250,
+    page: 190,
+    booking: 100,
+    shop: 950,
+    care: 130,
+    anim: 190,
+    merch: 250,
+    sign: 400,
     pwyc: 50,
   },
 };
@@ -46,6 +78,8 @@ export const PRICES: Record<Cur, Record<string, number>> = {
 export const CURS: { id: Cur; sign: string }[] = [
   { id: 'pln', sign: 'zł' },
   { id: 'eur', sign: '€' },
+  { id: 'gbp', sign: '£' },
+  { id: 'usd', sign: '$' },
 ];
 
 const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -54,7 +88,7 @@ const fmt = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 export function money(cur: Cur, key: string, bare = false) {
   const n = fmt(PRICES[cur][key] ?? 0);
   if (bare) return n;
-  return cur === 'eur' ? `€${n}` : `${n} zł`;
+  return cur === 'pln' ? `${n} zł` : `${{ eur: '€', gbp: '£', usd: '$' }[cur]}${n}`;
 }
 
 export function useCur(lang: Lang): [Cur, (c: Cur) => void] {
@@ -62,7 +96,7 @@ export function useCur(lang: Lang): [Cur, (c: Cur) => void] {
   useEffect(() => {
     try {
       const s = localStorage.getItem('pc-cur');
-      if (s === 'pln' || s === 'eur') setCur(s);
+      if (s && s in PRICES) setCur(s as Cur);
     } catch {}
   }, []);
   const set = (c: Cur) => {
