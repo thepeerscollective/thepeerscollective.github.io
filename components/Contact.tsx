@@ -5,6 +5,7 @@ import type { Lang } from '@/lib/projects';
 import { L, href } from '@/lib/i18n';
 import { Confetti, LangSwitch } from './bits';
 import SiteBar from './SiteBar';
+import { CURS, money, useCur } from '@/lib/prices';
 
 const ENDPOINT = 'https://formsubmit.co/ajax/hello@thepeerscollective.com';
 const ENDPOINT_FILE = 'https://formsubmit.co/hello@thepeerscollective.com';
@@ -21,9 +22,9 @@ const NEED: Opt[] = [
   { id: 'feed', en: 'the feed', pl: 'feed' },
 ];
 const BUDGET: Opt[] = [
-  { id: '01', en: 'from 2 500', pl: 'od 2 500' },
-  { id: '02', en: 'from 5 000', pl: 'od 5 000' },
-  { id: '03', en: 'from 7 500', pl: 'od 7 500' },
+  { id: '01', en: 'starter', pl: 'starter' },
+  { id: '02', en: 'main', pl: 'main' },
+  { id: '03', en: 'tasting', pl: 'tasting' },
   { id: 'trade', en: 'trade ⇄', pl: 'wymiana ⇄' },
   { id: 'pwyc', en: 'pay what you can ♡', pl: 'płać, ile możesz ♡' },
 ];
@@ -66,6 +67,8 @@ function Chips({ opts, sel, multi, onPick, lang }: { opts: Opt[]; sel: string[];
 
 export default function Contact({ lang }: { lang: Lang }) {
   const T = (o?: Opt) => (o ? (lang === 'en' ? o.en : o.pl) : '');
+  const [cur, setCur] = useCur(lang);
+  const BUDGETS = useMemo(() => BUDGET.map((b) => (['01', '02', '03'].includes(b.id) ? { ...b, en: 'from ' + money(cur, b.en), pl: 'od ' + money(cur, b.pl) } : b)), [cur]);
   const [who, setWho] = useState<string[]>([]);
   const [other, setOther] = useState('');
   const [need, setNeed] = useState<string[]>([]);
@@ -100,7 +103,7 @@ export default function Contact({ lang }: { lang: Lang }) {
   const lines: string[] = [];
   if (whoTxt) lines.push(`1 x  ${whoTxt}`);
   need.forEach((n) => lines.push(`1 x  ${T(NEED.find((x) => x.id === n))}`));
-  const bud = BUDGET.find((b) => b.id === budget[0]);
+  const bud = BUDGETS.find((b) => b.id === budget[0]);
   const talkO = TALK.find((t) => t.id === talk[0]);
   const slotTxt = slot[0] === 'other' ? otherTime : T(slotOpts.find((s) => s.id === slot[0]));
 
@@ -176,7 +179,7 @@ export default function Contact({ lang }: { lang: Lang }) {
             </div>
           </fieldset>
           <fieldset><legend>02 · {L(lang, 'what do you need?', 'czego potrzebujesz?')}</legend><Chips opts={NEED} sel={need} multi onPick={setNeed} lang={lang} /></fieldset>
-          <fieldset><legend>03 · {L(lang, 'budget, roughly', 'budżet, mniej więcej')}</legend><Chips opts={BUDGET} sel={budget} onPick={setBudget} lang={lang} /></fieldset>
+          <fieldset><legend>03 · {L(lang, 'budget, roughly', 'budżet, mniej więcej')}<span className="cur-sw sm" role="group" aria-label={L(lang, 'currency', 'waluta')}>{CURS.map((c) => <button key={c.id} type="button" className={cur === c.id ? 'on' : ''} aria-pressed={cur === c.id} onClick={() => setCur(c.id)}>{c.sign}</button>)}</span></legend><Chips opts={BUDGETS} sel={budget} onPick={setBudget} lang={lang} /></fieldset>
           <fieldset><legend>04 · {L(lang, 'in one sentence: what do you do, what do you need?', 'w jednym zdaniu: co robisz i czego potrzebujesz?')}</legend>
             <textarea value={line} onChange={(e) => setLine(e.target.value)} rows={2} maxLength={280} placeholder={L(lang, 'we make the best pierogi in kazimierz and nobody knows. we need a site that shows it.', 'robimy najlepsze pierogi na kazimierzu i nikt o tym nie wie. potrzebujemy strony, która to pokaże.')} />
             <div className="ct-rec">
@@ -210,7 +213,7 @@ export default function Contact({ lang }: { lang: Lang }) {
             <span className="rc-order">{L(lang, `order nº ${no}   ·   table 2`, `zamówienie nº ${no}   ·   stolik 2`)}</span>
             <span className="rc-dash" />
             {lines.length ? lines.map((l) => <span key={l} className="ct-l">{l}</span>) : <span className="ct-l ghost">1 x  …</span>}
-            {bud && <span className="ct-l">{L(lang, 'budget', 'budżet')}      {T(bud)}{['01', '02', '03'].includes(bud.id) ? ' zł' : ''}</span>}
+            {bud && <span className="ct-l">{L(lang, 'budget', 'budżet')}      {T(bud)}</span>}
             {talkO && <span className="ct-l">{L(lang, 'talk', 'rozmowa')}        {T(talkO)}</span>}
             {talkO && !isMail && slotTxt && <span className="ct-l hl">{'            '}{slotTxt}</span>}
             <span className="rc-dash" />
